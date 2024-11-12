@@ -104,3 +104,5 @@ m
 =src/main/java/org/example/bacheca/model/dao/CategorieDAO.java,c\c\ccc8a0ecfda9c75504767d62b9a4553970eae576
 j
 :src/main/java/org/example/bacheca/model/dao/UtenteDAO.java,3\7\3762e2fdd0898d394d1e1121402e50d0547877b1
+p
+@src/main/java/org/example/bacheca/model/dao/CreaAnnuncioDAO.java,1\9\196cfc64e1661c83b7e4076e7abde4924b1617e8

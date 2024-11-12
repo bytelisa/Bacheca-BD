@@ -9,8 +9,7 @@ public class Annuncio {
     private String venditore;
     private String categoria;
 
-    public Annuncio(int id, float prezzo, String descrizione, String venditore, String categoria){
-        setId(id);
+    public Annuncio(float prezzo, String descrizione, String venditore, String categoria){
         setPrezzo(prezzo);
         setDescrizione(descrizione);
         setVenditore(venditore);

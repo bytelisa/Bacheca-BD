@@ -27,6 +27,9 @@ public class LoginController implements Controller {
         } catch (DAOException e){
             throw new RuntimeException(e);
         }
+
+        //check login
+        System.out.println("Ciao, " + cred.getUsername() + "! Hai effettuato l'accesso come " + cred.getRole().toString() + '.');
     }
 
 }

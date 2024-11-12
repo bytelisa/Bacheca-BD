@@ -24,6 +24,7 @@ public class LoginDAO implements GenericDAO<Credentials> {
             cs.executeQuery();
             role = cs.getInt(3);
         }catch(SQLException e) {
+            e.printStackTrace();
             throw new DAOException("Login error: " + e.getMessage());
         }
 

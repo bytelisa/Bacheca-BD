@@ -26,16 +26,16 @@ public class LoginController implements Controller {
 
         try {
             cred = new LoginDAO().execute(cred.getUsername(), cred.getPassword());  //login effettivo tramite controllo delle credenziali nel db
-        } catch (DAOException e){
+
+            System.out.println("\nCiao, " + cred.getUsername() + "! Hai effettuato l'accesso come: " + cred.getRole().toString() + '.');
+
+            switch (cred.getRole()){
+                case UTENTE -> UtenteView.showMenu();
+                case GESTORE -> GestoreView.showMenu();
+            }
+
+        } catch (DAOException | IOException e){
             throw new RuntimeException(e);
-        }
-
-        //check login
-        System.out.println("\nCiao, " + cred.getUsername() + "! Hai effettuato l'accesso come: " + cred.getRole().toString() + '.');
-
-        switch (cred.getRole()){
-            case UTENTE -> UtenteView.showMenu();
-            case GESTORE -> GestoreView.showMenu();
         }
     }
 

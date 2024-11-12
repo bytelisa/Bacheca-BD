@@ -3,7 +3,7 @@ package org.example.bacheca.view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.sql.SQLOutput;
+
 
 import org.example.bacheca.model.domain.Credentials;
 

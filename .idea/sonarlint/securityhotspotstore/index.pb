@@ -1,8 +1,6 @@
 
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-S
-#src/main/java/org/example/Main.java,0\b\0ba1b9c7a4878802f938e331cc2d8a042087ec6b
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
@@ -16,3 +14,21 @@ S
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
 w
 G.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec,8\6\863e0292fd7e9b3e74dafd6cc01f73ba76346482
+l
+<src/main/java/org/example/bacheca/controller/Controller.java,1\6\16b81baf8ad4798d7924c689a409d34e88ce29fd
+o
+?src/main/java/org/example/bacheca/model/domain/Credentials.java,4\5\45c0c79405fd65025b1bfe37003d79eb496edc4c
+[
++src/main/java/org/example/bacheca/Main.java,c\0\c07c4923ea6b49c9f962d2edc27deee457211517
+e
+5src/main/java/org/example/bacheca/view/LoginView.java,b\e\be4ef407d35854e7cd286db9dd09586783ae499e
+w
+Gsrc/main/java/org/example/bacheca/controller/ApplicationController.java,8\b\8bbea35729dad5c1ae89c0a742a7b4a8dbb1e72d
+q
+Asrc/main/java/org/example/bacheca/controller/LoginController.java,2\5\25a11217ff8e6959aa2d8f97b78a355e3c9eebe8
+i
+9src/main/java/org/example/bacheca/model/dao/LoginDAO.java,e\5\e5b99d230e1bee7eaae4cf06a87e4d8f1fbfc6e4
+k
+;src/main/java/org/example/bacheca/model/dao/GenericDAO.java,1\a\1af7971a7ead693a2aa6401f09b3ed866536e713
+m
+=src/main/java/org/example/bacheca/exception/DAOException.java,c\1\c15052f03bb3d645a67ff8be237993f4990d9def

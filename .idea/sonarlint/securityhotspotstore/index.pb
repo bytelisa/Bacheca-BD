@@ -5,8 +5,6 @@
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 Å
-Q.idea/sonarlint/securityhotspotstore/0/b/0ba1b9c7a4878802f938e331cc2d8a042087ec6b,a\b\abe25e851ee828e40a94fcb1c1be6f78ff7a04cf
-Å
 Q.idea/sonarlint/securityhotspotstore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec,2\c\2cabb939da04d3de3a200bf2b575690e1a16316d
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
@@ -92,3 +90,17 @@ w
 G.idea/sonarlint/issuestore/3/b/3bdcfc89a934df304263f41b27fe7f4b5ccd1c0c,9\e\9e4d8cc6abf83dbb2db5d7cda45597738ed3dd4c
 Å
 Q.idea/sonarlint/securityhotspotstore/3/b/3bdcfc89a934df304263f41b27fe7f4b5ccd1c0c,0\e\0e0ea52babb56014403c2fe7af36b146e8190254
+r
+Bsrc/main/java/org/example/bacheca/controller/UtenteController.java,6\a\6a745a02b4592d7a310d41a2139105681083f41f
+s
+Csrc/main/java/org/example/bacheca/controller/GestoreController.java,f\4\f440ee04ed2139e30afdafab4ab641e50dce03b5
+f
+6src/main/java/org/example/bacheca/view/UtenteView.java,8\4\845bfb4dd850c6bd90b8b6bc215355994fb9c2be
+g
+7src/main/java/org/example/bacheca/view/GestoreView.java,b\b\bb4584025242fde38d4f9125d731005c10a96242
+l
+<src/main/java/org/example/bacheca/model/domain/Annuncio.java,a\2\a2b625fc98a187d14b6559f5936a53e3e03940ca
+m
+=src/main/java/org/example/bacheca/model/dao/CategorieDAO.java,c\c\ccc8a0ecfda9c75504767d62b9a4553970eae576
+j
+:src/main/java/org/example/bacheca/model/dao/UtenteDAO.java,3\7\3762e2fdd0898d394d1e1121402e50d0547877b1

@@ -3,7 +3,9 @@ package org.example.bacheca.controller;
 import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.dao.LoginDAO;
 import org.example.bacheca.model.domain.Credentials;
+import org.example.bacheca.view.GestoreView;
 import org.example.bacheca.view.LoginView;
+import org.example.bacheca.view.UtenteView;
 
 import java.io.IOException;
 
@@ -31,6 +33,10 @@ public class LoginController implements Controller {
         //check login
         System.out.println("Ciao, " + cred.getUsername() + "! Hai effettuato l'accesso come: " + cred.getRole().toString() + '.');
 
+        switch (cred.getRole()){
+            case UTENTE -> UtenteView.showMenu();
+            case GESTORE -> GestoreView.showMenu();
+        }
     }
 
 }

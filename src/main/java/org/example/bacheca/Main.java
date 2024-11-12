@@ -1,9 +1,11 @@
 package org.example.bacheca;
 
+import org.example.bacheca.controller.ApplicationController;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
 
-        //chiamo application controller e faccio partire l'applicazione
+        ApplicationController applcationController = new ApplicationController();
+        applcationController.start();
     }
 }

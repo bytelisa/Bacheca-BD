@@ -12,7 +12,7 @@ public class ConnectionFactory {
 
     static {
 
-        try (InputStream input = new FileInputStream ("resources/db.properties")) {
+        try (InputStream input = new FileInputStream ("src/main/resources/db.properties")) {
             Properties properties = new Properties();
             properties.load(input);
 

@@ -8,7 +8,7 @@ public class CreaAnnuncioDAO implements GenericDAO{
     @Override
     public int execute(Objects... params){
 
-        Annuncio annuncio = params[0];
+        Annuncio annuncio = (Annuncio) params[0];
         int id_annuncio;
 
     }

@@ -31,7 +31,7 @@ public class LoginController implements Controller {
         }
 
         //check login
-        System.out.println("Ciao, " + cred.getUsername() + "! Hai effettuato l'accesso come: " + cred.getRole().toString() + '.');
+        System.out.println("\nCiao, " + cred.getUsername() + "! Hai effettuato l'accesso come: " + cred.getRole().toString() + '.');
 
         switch (cred.getRole()){
             case UTENTE -> UtenteView.showMenu();

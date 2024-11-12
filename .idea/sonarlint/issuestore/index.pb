@@ -32,3 +32,5 @@ k
 ;src/main/java/org/example/bacheca/model/dao/GenericDAO.java,1\a\1af7971a7ead693a2aa6401f09b3ed866536e713
 m
 =src/main/java/org/example/bacheca/exception/DAOException.java,c\1\c15052f03bb3d645a67ff8be237993f4990d9def
+r
+Bsrc/main/java/org/example/bacheca/model/dao/ConnectionFactory.java,4\9\4975038dfb5fea518507896c15745d13cc2dc4d4

@@ -1,6 +1,5 @@
 package org.example.bacheca.model.domain;
 
-import javax.management.relation.Role;
 
 public class Credentials {
 

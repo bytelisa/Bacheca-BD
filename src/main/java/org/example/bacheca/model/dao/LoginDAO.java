@@ -30,5 +30,4 @@ public class LoginDAO implements GenericDAO<Credentials> {
 
         return new Credentials(username, password, Role.fromInt(role));
     }
-
 }

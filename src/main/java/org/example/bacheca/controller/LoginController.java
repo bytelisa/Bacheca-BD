@@ -29,7 +29,8 @@ public class LoginController implements Controller {
         }
 
         //check login
-        System.out.println("Ciao, " + cred.getUsername() + "! Hai effettuato l'accesso come " + cred.getRole().toString() + '.');
+        System.out.println("Ciao, " + cred.getUsername() + "! Hai effettuato l'accesso come: " + cred.getRole().toString() + '.');
+
     }
 
 }

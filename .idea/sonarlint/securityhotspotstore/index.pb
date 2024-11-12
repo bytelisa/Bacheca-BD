@@ -34,3 +34,5 @@ m
 =src/main/java/org/example/bacheca/exception/DAOException.java,c\1\c15052f03bb3d645a67ff8be237993f4990d9def
 r
 Bsrc/main/java/org/example/bacheca/model/dao/ConnectionFactory.java,4\9\4975038dfb5fea518507896c15745d13cc2dc4d4
+h
+8src/main/java/org/example/bacheca/model/domain/Role.java,3\b\3bdcfc89a934df304263f41b27fe7f4b5ccd1c0c

@@ -1,6 +1,10 @@
 
-	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8„Ø²‡²2J$0504ac09-bbae-4069-8106-b152ef1237d2
-	java:S112&"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8…Ø²‡²2J$99d724a6-2696-4883-9478-63c751ea8a7d
-r	java:S106"+Replace this use of System.out by a logger.(¤›â·ÿÿÿÿÿ8“ªä‰²2J$eadd1077-f671-44dc-b79b-3e67bec1c950
+	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Ûƒ„³2J$541e218b-4640-4ae6-977a-2faaaec7ff06
+	java:S112,"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Ûƒ„³2J$1f693ff8-5e64-4028-9fff-d8a4bc20f3c7
+r	java:S106"+Replace this use of System.out by a logger.(¤›â·ÿÿÿÿÿ8¯Ûƒ„³2J$794296a4-6464-4739-a47c-952184ee4304
 
-java:S1301 "KReplace this "switch" statement by "if" statements to increase readability.(°Ì±½8—ªä‰²2J$f7a56a0e-849f-4c99-b36e-e9e1885672f6
+java:S1301 "KReplace this "switch" statement by "if" statements to increase readability.(°Ì±½8²Ûƒ„³2J$1adb422f-efcb-4374-8277-fc51819c35f1
+„
+java:S1128"ARemove this unused import 'org.example.bacheca.view.GestoreView'.(Ã¾Â§8©²ˆ„³2J$0bde987c-fd2a-432b-9f59-82e1fe85b6c2
+ƒ
+java:S1128"@Remove this unused import 'org.example.bacheca.view.UtenteView'.(İò•8¼Ä„„³2J$e2921bf6-d89e-4010-a753-d5b7f19884f6

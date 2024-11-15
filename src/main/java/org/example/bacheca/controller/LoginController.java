@@ -30,11 +30,17 @@ public class LoginController implements Controller {
             System.out.println("\nCiao, " + cred.getUsername() + "! Hai effettuato l'accesso come: " + cred.getRole().toString() + '.');
 
             switch (cred.getRole()){
-                case UTENTE -> UtenteView.showMenu();
-                case GESTORE -> GestoreView.showMenu();
+                case UTENTE -> {
+                    UtenteController utenteController = new UtenteController();
+                    utenteController.start();
+                }
+                case GESTORE -> {
+                    GestoreController gestoreController = new GestoreController();
+                    gestoreController.start();
+                }
             }
 
-        } catch (DAOException | IOException e){
+        } catch (DAOException e){
             throw new RuntimeException(e);
         }
     }

@@ -18,7 +18,7 @@ public class UtenteView {
 
 
         Scanner input = new Scanner(System.in);
-        int choice = 0;
+        int choice;
 
         while (true) {
             System.out.print("Opzione scelta (1-5): ");

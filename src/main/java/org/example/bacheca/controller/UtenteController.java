@@ -1,7 +1,8 @@
 package org.example.bacheca.controller;
 
+import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.dao.CreaAnnuncioDAO;
-import org.example.bacheca.model.dao.UtenteDAO;
+
 import org.example.bacheca.model.domain.Annuncio;
 import org.example.bacheca.view.UtenteView;
 
@@ -59,10 +60,10 @@ public class UtenteController implements Controller {
             Annuncio nuovoAnnuncio = new Annuncio(prezzo, descrizione, null, categoria);
 
             //istanzio il dao che chiamerà la stored procedure
-            CreaAnnuncioDAO creaAnnuncioDAO = new CreaAnnuncioDAO();
-            creaAnnuncioDAO.execute(nuovoAnnuncio);
+            CreaAnnuncioDAO creaAnnuncioDAO = new CreaAnnuncioDAO(nuovoAnnuncio);
+            creaAnnuncioDAO.execute("boh");
 
-        } catch (IOException e) {
+        } catch (IOException | DAOException e) {
             e.printStackTrace();
         }
     }

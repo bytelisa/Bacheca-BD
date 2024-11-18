@@ -36,6 +36,6 @@ public class CreaAnnuncioDAO implements GenericDAO{
 
         System.out.println("Annuncio inserito con successo.");
         return annuncio;
-
+        //todo: far restituire id annuncio (necessario modificare la stored procedure)
     }
 }

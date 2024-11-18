@@ -29,7 +29,7 @@ public class UtenteController implements Controller {
 
             switch(choice){
                 case 1 -> nuovoAnnuncio();
-                case 2 -> System.out.println("Non ancora implementato");
+                case 2 -> cercaAnnuncio();
                 case 3 -> System.out.println("Non ancora implementato");
                 case 4 -> System.out.println("Non ancora implementato");
                 case 5 -> System.out.println("Non ancora implementato");
@@ -39,7 +39,7 @@ public class UtenteController implements Controller {
 
     }
 
-    /*---------------------------------------------------------------------------------------------------------*/
+    /*------------------------------------------- CREAZIONE ANNUNCIO -------------------------------------------------*/
 
     public void nuovoAnnuncio(){
 
@@ -73,4 +73,22 @@ public class UtenteController implements Controller {
         }
     }
 
+    /*------------------------------------------- RICERCA ANNUNCIO -------------------------------------------------*/
+
+    public void cercaAnnuncio(){
+
+        try {
+            int choice = UtenteView.cercaAnnuncio();
+
+
+        } catch (IOException e) {
+
+        }
+
+    }
+
+
+
 }
+
+//<3 ;)))))

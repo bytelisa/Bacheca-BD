@@ -12,6 +12,10 @@ import java.io.InputStreamReader;
 
 public class UtenteController implements Controller {
 
+    private String user;
+
+    public UtenteController(String username){ this.user = username; }
+
     @Override
     public void start(){
 

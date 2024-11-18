@@ -3,10 +3,7 @@ package org.example.bacheca.controller;
 import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.dao.LoginDAO;
 import org.example.bacheca.model.domain.Credentials;
-import org.example.bacheca.view.GestoreView;
 import org.example.bacheca.view.LoginView;
-import org.example.bacheca.view.UtenteView;
-
 import java.io.IOException;
 
 public class LoginController implements Controller {
@@ -31,11 +28,11 @@ public class LoginController implements Controller {
 
             switch (cred.getRole()){
                 case UTENTE -> {
-                    UtenteController utenteController = new UtenteController();
+                    UtenteController utenteController = new UtenteController(cred.getUsername());
                     utenteController.start();
                 }
                 case GESTORE -> {
-                    GestoreController gestoreController = new GestoreController();
+                    GestoreController gestoreController = new GestoreController(cred.getUsername());
                     gestoreController.start();
                 }
             }

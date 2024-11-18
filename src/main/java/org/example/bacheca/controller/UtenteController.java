@@ -41,7 +41,7 @@ public class UtenteController implements Controller {
 
     /*---------------------------------------------------------------------------------------------------------*/
 
-    public static void nuovoAnnuncio(){
+    public void nuovoAnnuncio(){
 
         String descrizione, venditore, categoria;
         Float prezzo;
@@ -62,7 +62,7 @@ public class UtenteController implements Controller {
             //System.out.print("Categoria scelta: ");
             categoria = reader.readLine();
 
-            Annuncio nuovoAnnuncio = new Annuncio(prezzo, descrizione, null, categoria);
+            Annuncio nuovoAnnuncio = new Annuncio(prezzo, descrizione, user, categoria);
 
             //istanzio il dao che chiamerà la stored procedure
             CreaAnnuncioDAO creaAnnuncioDAO = new CreaAnnuncioDAO(nuovoAnnuncio);

@@ -14,7 +14,7 @@ public class UtenteView {
 
         System.out.println("__________________________________________________________");
         System.out.println("Cosa vuoi fare?");
-        System.out.println("1. Crea un annuncio.\n2. Cerca annunci.\n3. Visualizza i tuoi annunci.\n4. Leggi commenti pubblici.\n5. Leggi nuovi messaggi.");
+        System.out.println("    1. Crea un annuncio.\n    2. Cerca annunci.\n    3. Visualizza i tuoi annunci.\n    4. Leggi commenti pubblici.\n    5. Leggi nuovi messaggi.");
 
 
         Scanner input = new Scanner(System.in);

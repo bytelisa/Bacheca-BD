@@ -1,7 +1,9 @@
 
 ‚
 java:S1118
-":Add a private constructor to hide the implicit public one.(ˆ†óûÿÿÿÿ8²ò·¯2J$87d30ad1-1543-4e81-b814-67a31a6197a1
-m	java:S106"+Replace this use of System.out by a logger.(Ç»¢¸8½ò·¯2J$44cf07fe-bbcb-4015-960d-bba6f47709c7
-m	java:S106"+Replace this use of System.out by a logger.(°½–µ8Àò·¯2J$3a3dc6ea-5738-40f1-82f2-4bdb96421ce1
-r	java:S106"+Replace this use of System.out by a logger.(ÈĞåİıÿÿÿÿ8¸²Å€²2J$07828f40-743d-41bd-b118-9b5e3143fd39
+":Add a private constructor to hide the implicit public one.(ˆ†óûÿÿÿÿ8²ò·¯2J$963a6e18-7972-402c-8e01-113115ed54ba
+r	java:S106"+Replace this use of System.out by a logger.(Ö¦™Ãıÿÿÿÿ8½ò·¯2J$478d6ac5-8de1-4101-9450-9a8eafdf4199
+m	java:S106"+Replace this use of System.out by a logger.(Ç»¢¸8Àò·¯2J$9c3aa6ad-7e67-4a21-85e7-77d2e226b073
+m	java:S106"+Replace this use of System.out by a logger.(°½–µ8¸²Å€²2J$ad6d2450-7671-4b7f-9111-5a3de5ed270a
+r	java:S106"+Replace this use of System.out by a logger.(ÈĞåİıÿÿÿÿ8…›»„³2J$6f5ead6a-91e4-4077-ac1e-d3d194d991f4
+~	java:S125"<This block of commented-out lines of code should be removed.(®¤í’8ÃÚËƒ´2J$a78a641c-157f-4147-b7c0-7e4888ede9f4

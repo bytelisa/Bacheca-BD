@@ -45,12 +45,13 @@ public class UtenteController implements Controller {
         try{
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-            System.out.println("Descrizione (max. 200 caratteri): ");
+            System.out.println("...............CREAZIONE ANNUNCIO...............");
+            System.out.print("Descrizione (max. 200 caratteri): ");
             descrizione = reader.readLine();
 
-            System.out.print("Prezzo: ");
+            System.out.print("Prezzo(€): ");
             prezzo = Float.valueOf(reader.readLine());
-
+            //todo: gestisci errore in caso venga inserita una stringa
 
             System.out.println("Seleziona la categoria tra quelle disponibili:");
             //printCategorie();
@@ -61,7 +62,7 @@ public class UtenteController implements Controller {
 
             //istanzio il dao che chiamerà la stored procedure
             CreaAnnuncioDAO creaAnnuncioDAO = new CreaAnnuncioDAO(nuovoAnnuncio);
-            creaAnnuncioDAO.execute("boh");
+            creaAnnuncioDAO.execute();
 
         } catch (IOException | DAOException e) {
             e.printStackTrace();

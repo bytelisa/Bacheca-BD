@@ -82,7 +82,7 @@ public class UtenteController implements Controller {
 
 
         } catch (IOException e) {
-
+            throw new RuntimeException(e);
         }
 
     }

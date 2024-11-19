@@ -15,6 +15,13 @@ public class Annuncio {
         setVenditore(venditore);
         setCategoria(categoria);
     }
+    public Annuncio(int id, float prezzo, String descrizione, String venditore, String categoria){
+        setId(id);
+        setPrezzo(prezzo);
+        setDescrizione(descrizione);
+        setVenditore(venditore);
+        setCategoria(categoria);
+    }
 
     public int getId() {
         return id;

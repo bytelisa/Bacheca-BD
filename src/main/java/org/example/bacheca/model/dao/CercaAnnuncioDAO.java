@@ -5,6 +5,7 @@ import org.example.bacheca.model.domain.Annuncio;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +39,21 @@ public class CercaAnnuncioDAO implements GenericDAO {
             }
 
             cs.setString(1, filter);
-            cs.executeQuery();
+            ResultSet rs = cs.executeQuery();
 
+            if(rs.next()) {
+
+                do {
+
+                    Annuncio annuncioCorrente = new Annuncio(rs.getInt("id"), rs.getFloat("prezzo"),
+                            rs.getString("descrizione"), rs.getString("venditore"),
+                            rs.getString("categoria"));
+
+                    resultList.add(annuncioCorrente);
+
+                }while (rs.next());
+
+            }
 
         } catch (SQLException e) {
             throw new DAOException("Cerca annuncio error: " + e.getMessage());

@@ -6,6 +6,9 @@ import org.example.bacheca.model.domain.Annuncio;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class UtenteView {
@@ -33,13 +36,15 @@ public class UtenteView {
 
     }
 
-    public static String cercaAnnuncio() throws IOException{
+    public static List<String> cercaAnnuncio() throws IOException{
 
         System.out.println("...............RICERCA ANNUNCIO...............");
         System.out.println("Cosa vuoi fare?");
         System.out.println("    1. Cerca per categoria.\n    2. Cerca per utente.\n    3. Cerca tramite descrizione.");
 
         //todo inserire i più generici filtri di ricerca?
+
+        List<String> returnList = new ArrayList<>();
 
         Scanner input = new Scanner(System.in);
         int choice;
@@ -62,10 +67,17 @@ public class UtenteView {
             default -> System.out.println("Input invalido.");
         }
 
-        return input.nextLine();
+        //restituiamo al controller il valore del filtro e il tipo di filtro
+        returnList.set(1, String.valueOf(choice));
+        returnList.set(0, input.nextLine());
+        return returnList;
 
     }
 
+
+    public static void mostraAnnunci(List<Annuncio> listaAnnunci) {
+
+    }
 
     public void printCategorie(){
         /* da finire

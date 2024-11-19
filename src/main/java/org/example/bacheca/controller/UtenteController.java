@@ -1,6 +1,7 @@
 package org.example.bacheca.controller;
 
 import org.example.bacheca.exception.DAOException;
+import org.example.bacheca.model.dao.CercaAnnuncioDAO;
 import org.example.bacheca.model.dao.CreaAnnuncioDAO;
 
 import org.example.bacheca.model.domain.Annuncio;
@@ -9,6 +10,8 @@ import org.example.bacheca.view.UtenteView;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UtenteController implements Controller {
 
@@ -77,11 +80,16 @@ public class UtenteController implements Controller {
 
     public void cercaAnnuncio(){
 
+        List<Annuncio> risultatiRicerca = new ArrayList<>();
+
         try {
-            String filter = UtenteView.cercaAnnuncio();
+            List<String> filters = UtenteView.cercaAnnuncio();  //contenuto del filtro di ricerca e tipo di filtro (categoria, utente, descrizione)
 
+            risultatiRicerca = new CercaAnnuncioDAO().execute(filters);
 
-        } catch (IOException e) {
+            UtenteView.mostraAnnunci(risultatiRicerca);
+
+        } catch (IOException |DAOException e) {
             throw new RuntimeException(e);
         }
 

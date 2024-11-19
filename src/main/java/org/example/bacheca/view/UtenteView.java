@@ -59,16 +59,19 @@ public class UtenteView {
             System.out.print("Input invalido. ");
         }
 
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
         switch(choice){
-            case 1 -> System.out.println("Quale categoria vuoi visualizzare? ");
-            case 2 -> System.out.println("Username del venditore: ");
-            case 3 -> System.out.println("Descrivi l'annuncio che stai cercando: ");
+            case 1 -> System.out.print("Quale categoria vuoi visualizzare? ");
+            case 2 -> System.out.print("Username del venditore: ");
+            case 3 -> System.out.print("Descrivi l'annuncio che stai cercando: ");
 
             default -> System.out.println("Input invalido.");
         }
 
+        String inserimento = reader.readLine();
         //restituiamo al controller il valore del filtro e il tipo di filtro
-        returnList.add(input.nextLine());
+        returnList.add(inserimento);
         returnList.add(String.valueOf(choice));
 
         return returnList;

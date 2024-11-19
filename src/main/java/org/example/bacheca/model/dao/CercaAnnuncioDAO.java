@@ -56,7 +56,7 @@ public class CercaAnnuncioDAO implements GenericDAO {
             }
 
         } catch (SQLException e) {
-            throw new DAOException("Cerca annuncio error: " + e.getMessage());
+            throw new DAOException("Cerca annuncio dao error: " + e.getMessage());
         }
 
         return resultList;

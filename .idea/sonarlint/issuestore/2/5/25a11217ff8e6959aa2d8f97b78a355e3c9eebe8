@@ -1,6 +1,6 @@
 
-	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Ûƒ„³2J$1f9e0cd9-e016-4527-99ea-c2a075d23163
-	java:S112)"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Ûƒ„³2J$023839c4-3b96-4825-86ba-c3ea987aae33
-r	java:S106"+Replace this use of System.out by a logger.(¤›â·ÿÿÿÿÿ8¯Ûƒ„³2J$1b4a8697-0685-4b38-880f-96bae55f9783
+	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Ûƒ„³2J$c6b0d402-102b-480f-9206-830c1cde02d6
+	java:S112)"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Ûƒ„³2J$bbafd44a-3239-4609-b11b-653733a405d8
+r	java:S106"+Replace this use of System.out by a logger.(¤›â·ÿÿÿÿÿ8¯Ûƒ„³2J$fc31f901-c75c-4778-9270-43cbf5615504
 
-java:S1301"KReplace this "switch" statement by "if" statements to increase readability.(°Ì±½8²Ûƒ„³2J$ec4cab78-e5cc-4f62-8b8e-3970de0cdb5b
+java:S1301"KReplace this "switch" statement by "if" statements to increase readability.(°Ì±½8²Ûƒ„³2J$300e74d3-689e-4923-8086-5b52c2d34143

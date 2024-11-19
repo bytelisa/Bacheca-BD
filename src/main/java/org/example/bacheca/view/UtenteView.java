@@ -81,6 +81,19 @@ public class UtenteView {
 
     public static void mostraAnnunci(List<Annuncio> listaAnnunci) {
 
+
+
+        for (Annuncio risultatoCorrente: listaAnnunci) {
+            System.out.println("----------------------------------------------------------------");
+            System.out.println("    " + risultatoCorrente.getDescrizione());
+            System.out.println("    - Prezzo: " + risultatoCorrente.getPrezzo() + "€");
+            System.out.println("    - Venditore:" + risultatoCorrente.getVenditore());
+        }
+    }
+
+
+    public static void stampaMessaggio(String messaggio){
+        System.out.println(messaggio);
     }
 
     public void printCategorie(){

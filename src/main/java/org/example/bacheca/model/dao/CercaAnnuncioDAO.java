@@ -45,7 +45,7 @@ public class CercaAnnuncioDAO implements GenericDAO {
 
                 do {
 
-                    Annuncio annuncioCorrente = new Annuncio(rs.getInt("id"), rs.getFloat("prezzo"),
+                    Annuncio annuncioCorrente = new Annuncio(rs.getInt("id_annuncio"), rs.getFloat("prezzo"),
                             rs.getString("descrizione"), rs.getString("venditore"),
                             rs.getString("categoria"));
 

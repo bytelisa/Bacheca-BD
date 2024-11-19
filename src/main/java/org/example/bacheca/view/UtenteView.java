@@ -33,13 +33,13 @@ public class UtenteView {
 
     }
 
-    public static int cercaAnnuncio() throws IOException{
+    public static String cercaAnnuncio() throws IOException{
 
         System.out.println("...............RICERCA ANNUNCIO...............");
         System.out.println("Cosa vuoi fare?");
         System.out.println("    1. Cerca per categoria.\n    2. Cerca per utente.\n    3. Cerca tramite descrizione.");
 
-        //todo inserire i filtri di ricerca?
+        //todo inserire i più generici filtri di ricerca?
 
         Scanner input = new Scanner(System.in);
         int choice;
@@ -55,20 +55,17 @@ public class UtenteView {
         }
 
         switch(choice){
-            case 1 -> cercaCategoria();
-            case 2 -> System.out.println("Non ancora implementato.");
-            case 3 -> System.out.println("Non ancora implementato.");
+            case 1 -> System.out.println("Quale categoria vuoi visualizzare? ");
+            case 2 -> System.out.println("Username del venditore: ");
+            case 3 -> System.out.println("Descrivi l'annuncio che stai cercando: ");
+
             default -> System.out.println("Input invalido.");
         }
 
-        return choice;
+        return input.nextLine();
+
     }
 
-
-    public static void cercaCategoria(){
-
-        System.out.println("Quale categoria vuoi visualizzare? ");
-    }
 
     public void printCategorie(){
         /* da finire

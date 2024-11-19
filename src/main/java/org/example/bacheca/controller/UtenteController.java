@@ -78,7 +78,7 @@ public class UtenteController implements Controller {
     public void cercaAnnuncio(){
 
         try {
-            int choice = UtenteView.cercaAnnuncio();
+            String filter = UtenteView.cercaAnnuncio();
 
 
         } catch (IOException e) {

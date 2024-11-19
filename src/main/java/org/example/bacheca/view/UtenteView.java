@@ -68,8 +68,9 @@ public class UtenteView {
         }
 
         //restituiamo al controller il valore del filtro e il tipo di filtro
-        returnList.set(1, String.valueOf(choice));
-        returnList.set(0, input.nextLine());
+        returnList.add(input.nextLine());
+        returnList.add(String.valueOf(choice));
+
         return returnList;
 
     }

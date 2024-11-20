@@ -3,14 +3,12 @@ package org.example.bacheca.controller;
 import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.dao.CercaAnnuncioDAO;
 import org.example.bacheca.model.dao.CreaAnnuncioDAO;
-
 import org.example.bacheca.model.domain.Annuncio;
+import org.example.bacheca.other.Printer;
 import org.example.bacheca.view.UtenteView;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
 public class UtenteController implements Controller {
@@ -33,9 +31,9 @@ public class UtenteController implements Controller {
             switch(choice){
                 case 1 -> nuovoAnnuncio();
                 case 2 -> cercaAnnuncio();
-                case 3 -> System.out.println("Non ancora implementato");
-                case 4 -> System.out.println("Non ancora implementato");
-                case 5 -> System.out.println("Non ancora implementato");
+                case 3 -> Printer.println("Non ancora implementato");
+                case 4 -> Printer.println("Non ancora implementato");
+                case 5 -> Printer.println("Non ancora implementato");
                 default -> throw new RuntimeException("Invalid choice");
             }
         }
@@ -46,21 +44,21 @@ public class UtenteController implements Controller {
 
     public void nuovoAnnuncio(){
 
-        String descrizione, venditore, categoria;
+        String descrizione, categoria;
         Float prezzo;
 
         try{
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-            System.out.println("...............CREAZIONE ANNUNCIO...............");
-            System.out.print("Descrizione (max. 200 caratteri): ");
+            Printer.println("...............CREAZIONE ANNUNCIO...............");
+            Printer.print("Descrizione (max. 200 caratteri): ");
             descrizione = reader.readLine();
 
-            System.out.print("Prezzo(€): ");
+            Printer.print("Prezzo(€): ");
             prezzo = Float.valueOf(reader.readLine());
             //todo: gestisci errore in caso venga inserita una stringa
 
-            System.out.println("Seleziona la categoria tra quelle disponibili:");
+            Printer.println("Seleziona la categoria tra quelle disponibili:");
             //printCategorie();
             //System.out.print("Categoria scelta: ");
             categoria = reader.readLine();

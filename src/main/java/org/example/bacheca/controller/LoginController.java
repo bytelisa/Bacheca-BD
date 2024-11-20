@@ -36,6 +36,10 @@ public class LoginController implements Controller {
                     GestoreController gestoreController = new GestoreController(cred.getUsername());
                     gestoreController.start();
                 }
+                default -> {
+                    Printer.errorPrint("Credenziali sbagliate.");
+                    System.exit(0);
+                }
 
             }
 

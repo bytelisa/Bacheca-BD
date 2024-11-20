@@ -16,22 +16,22 @@ public class UtenteView {
 
     public static int showMenu() throws IOException {
 
-        System.out.println("__________________________________________________________");
-        System.out.println("Cosa vuoi fare?");
-        System.out.println("    1. Crea un annuncio.\n    2. Cerca annunci.\n    3. Visualizza i tuoi annunci.\n    4. Leggi commenti pubblici.\n    5. Leggi nuovi messaggi.");
+        Printer.printlnBlu("..................MENU UTENTE..................");
+        Printer.println("Cosa vuoi fare?");
+        Printer.println("    1. Crea un annuncio.\n    2. Cerca annunci.\n    3. Visualizza i tuoi annunci.\n    4. Leggi commenti pubblici.\n    5. Leggi nuovi messaggi.");
 
 
         Scanner input = new Scanner(System.in);
         int choice;
 
         while (true) {
-            System.out.print("Opzione scelta (1-5): ");
+            Printer.print("Opzione scelta (1-5): ");
             choice = input.nextInt();
 
             if (choice >= 1 && choice <= 5) {
                 break;
             }
-            System.out.print("Input invalido, inserire un numero valido: ");
+            Printer.print("Input invalido, inserire un numero valido: ");
         }
         return choice;
 
@@ -39,7 +39,7 @@ public class UtenteView {
 
     public static List<String> cercaAnnuncio() throws IOException{
 
-        Printer.println("...............RICERCA ANNUNCIO...............");
+        Printer.printlnBlu("...............RICERCA ANNUNCIO...............");
         Printer.println("Cosa vuoi fare?");
         Printer.println("    1. Cerca per categoria.\n    2. Cerca per utente.\n    3. Cerca tramite descrizione.");
 
@@ -82,10 +82,8 @@ public class UtenteView {
 
     public static void mostraAnnunci(List<Annuncio> listaAnnunci) {
 
-
-
         for (Annuncio risultatoCorrente: listaAnnunci) {
-            Printer.println("----------------------------------------------------------------");
+            Printer.printlnBlu("..................LISTA ANNUNCI..................");
             Printer.println("    " + risultatoCorrente.getDescrizione());
             Printer.println("    - Prezzo: " + risultatoCorrente.getPrezzo() + "€");
             Printer.println("    - Venditore:" + risultatoCorrente.getVenditore());

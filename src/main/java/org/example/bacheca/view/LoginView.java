@@ -6,18 +6,19 @@ import java.io.InputStreamReader;
 
 
 import org.example.bacheca.model.domain.Credentials;
+import org.example.bacheca.other.Printer;
 
 public class LoginView {
     public static Credentials authenticate() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("__________________________________________________________");
+        Printer.println("__________________________________________________________");
 
-        System.out.println("Benvenuto! Accedi con le tue credenziali per procedere.");
-        System.out.print("  username: ");
+        Printer.println("Benvenuto! Accedi con le tue credenziali per procedere.");
+        Printer.print("  username: ");
         String username = reader.readLine();
-        System.out.print("  password: ");
+        Printer.print("  password: ");
         String password = reader.readLine();
-        //System.out.println("__________________________________________________________");
+
 
         return new Credentials(username, password, null);
     }

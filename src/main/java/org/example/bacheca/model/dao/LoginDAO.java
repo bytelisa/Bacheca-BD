@@ -23,6 +23,11 @@ public class LoginDAO implements GenericDAO<Credentials> {
             cs.registerOutParameter(3, Types.NUMERIC);
             cs.executeQuery();
             role = cs.getInt(3);
+
+            if (role == 0) {
+                throw new DAOException("Credenziali sbagliate! Ritentare l'accesso.");
+            }
+
         }catch(SQLException e) {
             e.printStackTrace();
             throw new DAOException("Login error: " + e.getMessage());

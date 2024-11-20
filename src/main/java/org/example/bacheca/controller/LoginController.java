@@ -3,6 +3,7 @@ package org.example.bacheca.controller;
 import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.dao.LoginDAO;
 import org.example.bacheca.model.domain.Credentials;
+import org.example.bacheca.other.Printer;
 import org.example.bacheca.view.LoginView;
 import java.io.IOException;
 
@@ -24,7 +25,7 @@ public class LoginController implements Controller {
         try {
             cred = new LoginDAO().execute(cred.getUsername(), cred.getPassword());  //login effettivo tramite controllo delle credenziali nel db
 
-            System.out.println("\nCiao, " + cred.getUsername() + "! Hai effettuato l'accesso come: " + cred.getRole().toString() + '.');
+            Printer.println("\nCiao, " + cred.getUsername() + "! Hai effettuato l'accesso come: " + cred.getRole().toString() + '.');
 
             switch (cred.getRole()){
                 case UTENTE -> {
@@ -35,10 +36,12 @@ public class LoginController implements Controller {
                     GestoreController gestoreController = new GestoreController(cred.getUsername());
                     gestoreController.start();
                 }
+
             }
 
         } catch (DAOException e){
-            throw new RuntimeException(e);
+            Printer.errorPrint("Credenziali sbagliate.");
+            System.exit(0);
         }
     }
 

@@ -2,6 +2,7 @@ package org.example.bacheca.view;
 
 import org.example.bacheca.controller.UtenteController;
 import org.example.bacheca.model.domain.Annuncio;
+import org.example.bacheca.other.Printer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -38,9 +39,9 @@ public class UtenteView {
 
     public static List<String> cercaAnnuncio() throws IOException{
 
-        System.out.println("...............RICERCA ANNUNCIO...............");
-        System.out.println("Cosa vuoi fare?");
-        System.out.println("    1. Cerca per categoria.\n    2. Cerca per utente.\n    3. Cerca tramite descrizione.");
+        Printer.println("...............RICERCA ANNUNCIO...............");
+        Printer.println("Cosa vuoi fare?");
+        Printer.println("    1. Cerca per categoria.\n    2. Cerca per utente.\n    3. Cerca tramite descrizione.");
 
         //todo inserire i più generici filtri di ricerca?
 
@@ -50,23 +51,23 @@ public class UtenteView {
         int choice;
 
         while (true) {
-            System.out.print("Opzione scelta (1-3): ");
+            Printer.print("Opzione scelta (1-3): ");
             choice = input.nextInt();
 
             if (choice >= 1 && choice <= 5) {
                 break;
             }
-            System.out.print("Input invalido. ");
+            Printer.print("Input invalido. ");
         }
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         switch(choice){
-            case 1 -> System.out.print("Quale categoria vuoi visualizzare? ");
-            case 2 -> System.out.print("Username del venditore: ");
-            case 3 -> System.out.print("Descrivi l'annuncio che stai cercando: ");
+            case 1 -> Printer.print("Quale categoria vuoi visualizzare? ");
+            case 2 -> Printer.print("Username del venditore: ");
+            case 3 -> Printer.print("Descrivi l'annuncio che stai cercando: ");
 
-            default -> System.out.println("Input invalido.");
+            default -> Printer.println("Input invalido.");
         }
 
         String inserimento = reader.readLine();
@@ -84,16 +85,16 @@ public class UtenteView {
 
 
         for (Annuncio risultatoCorrente: listaAnnunci) {
-            System.out.println("----------------------------------------------------------------");
-            System.out.println("    " + risultatoCorrente.getDescrizione());
-            System.out.println("    - Prezzo: " + risultatoCorrente.getPrezzo() + "€");
-            System.out.println("    - Venditore:" + risultatoCorrente.getVenditore());
+            Printer.println("----------------------------------------------------------------");
+            Printer.println("    " + risultatoCorrente.getDescrizione());
+            Printer.println("    - Prezzo: " + risultatoCorrente.getPrezzo() + "€");
+            Printer.println("    - Venditore:" + risultatoCorrente.getVenditore());
         }
     }
 
 
     public static void stampaMessaggio(String messaggio){
-        System.out.println(messaggio);
+        Printer.println(messaggio);
     }
 
     public void printCategorie(){

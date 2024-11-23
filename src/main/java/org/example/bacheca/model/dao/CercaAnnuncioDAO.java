@@ -17,7 +17,7 @@ public class CercaAnnuncioDAO implements GenericDAO {
      /* */
 
         String filter = (String) params[0];
-        String filterType = (String) params[1];
+        String filterType = (String) params[1]; //se per categoria, utente o descrizione
 
         List<Annuncio> resultList = new ArrayList<>();
 

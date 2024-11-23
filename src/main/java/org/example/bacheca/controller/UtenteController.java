@@ -13,7 +13,7 @@ import java.util.List;
 
 public class UtenteController implements Controller {
 
-    private String user;
+    private final String user;
 
     public UtenteController(String username){ this.user = username; }
 
@@ -31,7 +31,7 @@ public class UtenteController implements Controller {
             switch(choice){
                 case 1 -> nuovoAnnuncio();
                 case 2 -> cercaAnnuncio();
-                case 3 -> Printer.println("Non ancora implementato");
+                case 3 -> annunciUtente();
                 case 4 -> Printer.println("Non ancora implementato");
                 case 5 -> Printer.println("Non ancora implementato");
                 default -> throw new RuntimeException("Invalid choice");
@@ -95,6 +95,18 @@ public class UtenteController implements Controller {
 
     }
 
+    public void annunciUtente(){
+        List<Annuncio> annunci;
+
+        try {
+            annunci = new CercaAnnuncioDAO().execute(this.user, "2");
+            UtenteView.stampaMessaggio("Annunci pubblicati: ");
+            UtenteView.mostraAnnunciUtente(annunci);
+
+        } catch (DAOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 }

@@ -70,4 +70,12 @@ public class Annuncio {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+
+    public String statoToString() {
+        if (Boolean.TRUE.equals(this.getStato())) {
+            return "Sì";
+        } else {
+            return "No";
+        }
+    }
 }

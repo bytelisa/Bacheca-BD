@@ -89,6 +89,17 @@ public class UtenteView {
             Printer.println("    - Venditore:" + risultatoCorrente.getVenditore());
         }
     }
+    public static void mostraAnnunciUtente(List<Annuncio> listaAnnunci) {
+
+        for (Annuncio risultatoCorrente: listaAnnunci) {
+            Printer.println(".......................................");
+            Printer.print("(id." + risultatoCorrente.getId() + ") ");
+            Printer.println(risultatoCorrente.getDescrizione());
+            Printer.println("    - Prezzo: " + risultatoCorrente.getPrezzo() + "€");
+            Printer.println("    - Categoria:" + risultatoCorrente.getCategoria());
+            Printer.println("    - Venduto: " + risultatoCorrente.statoToString());
+        }
+    }
 
 
     public static void stampaMessaggio(String messaggio){

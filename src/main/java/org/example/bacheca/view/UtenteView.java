@@ -90,6 +90,7 @@ public class UtenteView {
         }
     }
     public static void mostraAnnunciUtente(List<Annuncio> listaAnnunci) {
+        Printer.printlnBlu(".................. I TUOI ANNUNCI ..................");
 
         for (Annuncio risultatoCorrente: listaAnnunci) {
             Printer.println(".......................................");

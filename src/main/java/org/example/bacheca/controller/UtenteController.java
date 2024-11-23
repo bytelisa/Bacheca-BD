@@ -100,7 +100,6 @@ public class UtenteController implements Controller {
 
         try {
             annunci = new CercaAnnuncioDAO().execute(this.user, "2");
-            UtenteView.stampaMessaggio("Annunci pubblicati: ");
             UtenteView.mostraAnnunciUtente(annunci);
 
         } catch (DAOException e) {

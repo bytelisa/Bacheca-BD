@@ -51,6 +51,13 @@ public class Annuncio {
         return stato;
     }
 
+    public String statoToString() {
+        if (Boolean.TRUE.equals(this.getStato())) {
+            return "Venduto";
+        } else {
+            return "Invenduto";
+        }
+    }
     public void setStato(Boolean stato) {
         this.stato = stato;
     }
@@ -71,11 +78,5 @@ public class Annuncio {
         this.categoria = categoria;
     }
 
-    public String statoToString() {
-        if (Boolean.TRUE.equals(this.getStato())) {
-            return "Sì";
-        } else {
-            return "No";
-        }
-    }
+
 }

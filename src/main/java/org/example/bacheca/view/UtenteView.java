@@ -96,8 +96,8 @@ public class UtenteView {
             Printer.print("(id." + risultatoCorrente.getId() + ") ");
             Printer.println(risultatoCorrente.getDescrizione());
             Printer.println("    - Prezzo: " + risultatoCorrente.getPrezzo() + "€");
-            Printer.println("    - Categoria:" + risultatoCorrente.getCategoria());
-            Printer.println("    - Venduto: " + risultatoCorrente.statoToString());
+            Printer.println("    - Categoria: " + risultatoCorrente.getCategoria());
+            Printer.println("    - Stato: " + risultatoCorrente.statoToString());
         }
     }
 

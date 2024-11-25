@@ -14,6 +14,7 @@ import java.util.Scanner;
 
 public class UtenteView {
 
+
     public static int showMenu() throws IOException {
 
         Printer.printlnBlu("..................MENU UTENTE..................");
@@ -79,7 +80,6 @@ public class UtenteView {
 
     }
 
-
     public static void mostraAnnunci(List<Annuncio> listaAnnunci) {
 
         for (Annuncio risultatoCorrente: listaAnnunci) {
@@ -89,6 +89,7 @@ public class UtenteView {
             Printer.println("    - Venditore:" + risultatoCorrente.getVenditore());
         }
     }
+
     public static void mostraAnnunciUtente(List<Annuncio> listaAnnunci) {
         Printer.printlnBlu(".................. I TUOI ANNUNCI ..................");
 
@@ -102,10 +103,10 @@ public class UtenteView {
         }
     }
 
-
     public static void stampaMessaggio(String messaggio){
         Printer.println(messaggio);
     }
+
 
     public void printCategorie(){
         /* da finire

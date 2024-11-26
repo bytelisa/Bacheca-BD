@@ -66,15 +66,16 @@ public class AnnunciController implements Controller{
     public void gestoreAzioni(int idAnnuncio, int azione) {
 
         //todo stored procedures per tutte queste azioni!!!!
-
+        Annuncio annuncio;
         AzioniAnnuncioDAO dao = new AzioniAnnuncioDAO();
         try {
             switch (azione) {
                 case 1 -> {
                     //modifica
-                    //tramite view costruisce nuovo Annuncio
-                    dao.execute(1);
-                    Printer.println("Non ancora implementato.");
+                    //tramite view costruisce nuovo Annuncio modificato
+                    annuncio = AnnunciView.modificaAnnuncio(Objects.requireNonNull(Annuncio.findAnnuncioById(this.annunciList, idAnnuncio)));
+                    dao.execute(1, annuncio);
+
                 }
                 case 2 -> {
                     //elimina

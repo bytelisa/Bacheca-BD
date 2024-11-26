@@ -90,7 +90,7 @@ public class AnnunciView {
         Printer.println(messaggio);
     }
 
-    public static Annuncio getInfoAnnuncio(Annuncio vecchioAnnuncio) {
+    public static Annuncio modificaAnnuncio(Annuncio vecchioAnnuncio) {
 
         String descrizione, categoria;
         Float prezzo;

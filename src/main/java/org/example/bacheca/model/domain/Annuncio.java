@@ -26,7 +26,7 @@ public class Annuncio {
         setCategoria(categoria);
     }
 
-    public List<Integer> getIdList(List<Annuncio> annunciList) {
+    public static List<Integer> getIdList(List<Annuncio> annunciList) {
         List<Integer> idList = new ArrayList<>();
         for (Annuncio annuncio: annunciList){
             idList.add(annuncio.getId());

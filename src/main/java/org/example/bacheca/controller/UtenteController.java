@@ -88,7 +88,7 @@ public class UtenteController implements Controller {
             UtenteView.stampaMessaggio("Risultati di ricerca per: " + filters.getFirst());
             UtenteView.mostraAnnunci(risultatiRicerca);
 
-            AnnunciController annunciController = new AnnunciController(user);
+            AnnunciController annunciController = new AnnunciController(user, risultatiRicerca);
             annunciController.start();
 
         } catch (IOException |DAOException e) {
@@ -104,7 +104,7 @@ public class UtenteController implements Controller {
             annunci = new CercaAnnuncioDAO().execute(this.user, "2");
             UtenteView.mostraAnnunciUtente(annunci);
 
-            AnnunciController annunciController = new AnnunciController(user);
+            AnnunciController annunciController = new AnnunciController(user, annunci);
             annunciController.start();
 
         } catch (DAOException e) {

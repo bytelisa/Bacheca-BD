@@ -1,5 +1,6 @@
 package org.example.bacheca.view;
 
+import org.example.bacheca.model.domain.Annuncio;
 import org.example.bacheca.other.Printer;
 
 import java.io.IOException;
@@ -66,6 +67,19 @@ public class AnnunciView {
             Printer.print("Input invalido, inserire un ID valido: ");
         }
         return idAnnuncio;
+    }
+
+    public static void mostraAnnunciUtente(List<Annuncio> listaAnnunci) {
+        Printer.printlnBlu(".................. I TUOI ANNUNCI ..................");
+
+        for (Annuncio risultatoCorrente: listaAnnunci) {
+            Printer.println(".......................................");
+            Printer.print("(id." + risultatoCorrente.getId() + ") ");
+            Printer.println(risultatoCorrente.getDescrizione());
+            Printer.println("    - Prezzo: " + risultatoCorrente.getPrezzo() + "€");
+            Printer.println("    - Categoria: " + risultatoCorrente.getCategoria());
+            Printer.println("    - Stato: " + risultatoCorrente.statoToString());
+        }
     }
 
 }

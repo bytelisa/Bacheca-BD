@@ -1,15 +1,12 @@
 package org.example.bacheca.view;
 
-import org.example.bacheca.controller.UtenteController;
 import org.example.bacheca.model.domain.Annuncio;
 import org.example.bacheca.other.Printer;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class UtenteView {
@@ -17,7 +14,7 @@ public class UtenteView {
 
     public static int showMenu() throws IOException {
 
-        Printer.printlnBlu("..................MENU UTENTE..................");
+        Printer.printlnBlu("........................MENU UTENTE........................");
         Printer.println("Cosa vuoi fare?");
         Printer.println("    1. Crea un annuncio.\n    2. Cerca annunci.\n    3. Visualizza i tuoi annunci attivi.\n    4. Leggi commenti pubblici.\n    5. Leggi nuovi messaggi.\n    6. Annunci contrassegnati come venduti.");
 
@@ -40,7 +37,7 @@ public class UtenteView {
 
     public static List<String> cercaAnnuncio() throws IOException{
 
-        Printer.printlnBlu("...............RICERCA ANNUNCIO...............");
+        Printer.printlnBlu("......................RICERCA ANNUNCIO......................");
         Printer.println("Cosa vuoi fare?");
         Printer.println("    1. Cerca per categoria.\n    2. Cerca per utente.\n    3. Cerca tramite descrizione.");
 
@@ -82,11 +79,15 @@ public class UtenteView {
 
     public static void mostraAnnunci(List<Annuncio> listaAnnunci) {
 
+        Printer.printlnBlu("......................Risultati di ricerca......................");
+        int i = 1;
         for (Annuncio risultatoCorrente: listaAnnunci) {
-            Printer.println(".......................................");
+            Printer.print(i + ") ");
             Printer.println("    " + risultatoCorrente.getDescrizione());
-            Printer.println("    - Prezzo: " + risultatoCorrente.getPrezzo() + "€");
-            Printer.println("    - Venditore:" + risultatoCorrente.getVenditore());
+            Printer.println("       - Prezzo: " + risultatoCorrente.getPrezzo() + "€");
+            Printer.println("       - Venditore: " + risultatoCorrente.getVenditore());
+            Printer.println("_____________________________________________________________");
+            i+=1;
         }
     }
 

@@ -14,10 +14,9 @@ public class AnnunciView {
 
 
     public static int showMenuAnnunci() throws IOException {
-        Printer.printlnBlu("..................GESTIONE ANNUNCI..................");
+        Printer.printlnBlu("......................GESTIONE ANNUNCI......................");
         Printer.println("Cosa vuoi fare?");
         Printer.println("    1. Seleziona un annuncio.\n    2. Esci.");
-
 
         Scanner input = new Scanner(System.in);
         int choice;
@@ -55,6 +54,27 @@ public class AnnunciView {
         return choice;
     }
 
+    public static int showAzioniAnnuncioPubblico() throws IOException {
+
+        Printer.println("Cosa vuoi fare con questo annuncio?");
+        Printer.println("    1. Mostra informazioni del venditore.\n    2. Segui.\n    3. Leggi commenti pubblici su questo annuncio.\n    4. Commenta.\n   5. Torna ai risultati di ricerca.");
+
+
+        Scanner input = new Scanner(System.in);
+        int choice;
+
+        while (true) {
+            Printer.print("Opzione scelta (1-5): ");
+            choice = input.nextInt();
+
+            if (choice >= 1 && choice <= 5) {
+                break;
+            }
+            Printer.print("Input invalido! ");
+        }
+        return choice;
+    }
+
     public static int getAnnuncioSelezionato(List<Integer> idValidi) throws IOException {
         Scanner input = new Scanner(System.in);
         int idAnnuncio;
@@ -70,6 +90,22 @@ public class AnnunciView {
             Printer.print("Input invalido! ");
         }
         return idAnnuncio;
+    }
+
+    public static int selezionaRisultato(List<Integer> idValidi) throws IOException {
+        Scanner input = new Scanner(System.in);
+        int index;
+
+        while (true) {
+            Printer.print("ID dell'annuncio selezionato: ");
+            index = input.nextInt();
+
+            if (idValidi.contains(index)) {
+                break;
+            }
+            Printer.print("Input invalido! ");
+        }
+        return index;
     }
 
     public static void mostraAnnunci(List<Annuncio> listaAnnunci) {

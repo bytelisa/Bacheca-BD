@@ -85,11 +85,11 @@ public class UtenteController implements Controller {
 
             risultatiRicerca = new CercaAnnuncioDAO().execute(filters.get(0), filters.get(1));
 
-            UtenteView.stampaMessaggio("Risultati di ricerca per: " + filters.getFirst());
+            //UtenteView.stampaMessaggio("Risultati di ricerca con il filtro: " + filters.getFirst());
             UtenteView.mostraAnnunci(risultatiRicerca);
 
             AnnunciController annunciController = new AnnunciController(user, risultatiRicerca);
-            annunciController.start();
+            annunciController.annunciRicerca();
 
         } catch (IOException |DAOException e) {
             throw new RuntimeException(e);

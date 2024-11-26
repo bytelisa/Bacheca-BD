@@ -63,6 +63,41 @@ public class AnnunciController implements Controller{
         }
     }
 
+    public void annunciRicerca() {
+
+        while(true) {
+            int choice;
+            try {
+
+                choice = AnnunciView.showMenuAnnunci();
+
+                switch (choice) {
+                    case 1 -> {
+                        //selezionare un annuncio
+                        int indice = AnnunciView.selezionaRisultato(this.idAnnunciList);
+
+                        Annuncio selezionato = annunciList.get(indice - 1);
+                        AnnunciView.stampaMessaggio("Annuncio selezionato: " + "\"" + selezionato.getDescrizione() + "\"");
+
+                        int action = AnnunciView.showAzioniAnnuncioPubblico();
+                        gestoreAzioniPubbliche(selezionato, action);
+
+                    }
+                    case 2 -> {
+                        //tornare indietro
+                        UtenteController utenteController = new UtenteController(user);
+                        utenteController.start();
+                    }
+
+                    default -> throw new RuntimeException("Invalid choice");
+                }
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+    }
 
     public void gestoreAzioni(int idAnnuncio, int azione) {
 
@@ -112,6 +147,10 @@ public class AnnunciController implements Controller{
             throw new RuntimeException(e);
         }
 
+    }
+
+    public void gestoreAzioniPubbliche(Annuncio annuncio, int azione) {
+        Printer.errorPrint("Da implementare.");
     }
 
 }

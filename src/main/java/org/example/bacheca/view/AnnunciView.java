@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class AnnunciView {
@@ -92,7 +93,7 @@ public class AnnunciView {
 
     public static Annuncio modificaAnnuncio(Annuncio vecchioAnnuncio) {
 
-        String descrizione, categoria;
+        String descrizione, categoria, stato;
         Float prezzo;
         Annuncio annuncioModificato = null;
 
@@ -110,12 +111,21 @@ public class AnnunciView {
             prezzo = Float.valueOf(reader.readLine());
             //gestisci errore in caso venga inserita una stringa
 
-            Printer.println("Vecchia categoria:" + vecchioAnnuncio.getCategoria());
+            Printer.println("Vecchia categoria: " + vecchioAnnuncio.getCategoria());
             Printer.print("Nuova categoria: ");
             categoria = reader.readLine();
 
-            Printer.println("L'oggetto è stato venduto? (si/no):");
-            String stato = reader.readLine();
+            Printer.print("L'oggetto è stato venduto? (si/no): 2");
+            while (true) {
+                stato = reader.readLine();
+                Printer.errorPrint(stato);
+
+                if (Objects.equals(stato, "si") || Objects.equals(stato, "no")) {
+                    break;
+                } else {
+                    Printer.errorPrint("Opzioni valide: si/no");
+                }
+            }
 
             annuncioModificato = new Annuncio(vecchioAnnuncio.getId(), descrizione, prezzo, categoria, stato);
 

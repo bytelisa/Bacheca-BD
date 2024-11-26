@@ -74,6 +74,7 @@ public class AnnunciController implements Controller{
                     //modifica
                     //tramite view costruisce nuovo Annuncio modificato
                     annuncio = AnnunciView.modificaAnnuncio(Objects.requireNonNull(Annuncio.findAnnuncioById(this.annunciList, idAnnuncio)));
+                    Printer.errorPrint("STATO: " + annuncio.getStato());
                     dao.execute(1, annuncio);
 
                 }

@@ -88,10 +88,12 @@ public class Annuncio {
     }
 
     public Boolean stringToStato(String stato){
-        if (stato == "si") {
+        if (stato.startsWith("s") || stato.startsWith("S")) {
             return true;
-        } else {
+        } else if (stato.startsWith("n") || stato.startsWith("N")){
             return false;
+        } else {
+            return null;
         }
     }
 

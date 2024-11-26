@@ -7,6 +7,7 @@ import org.example.bacheca.view.UtenteView;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 public class AnnunciController implements Controller{
 
@@ -40,6 +41,7 @@ public class AnnunciController implements Controller{
                         //selezionare un annuncio
                         int id = AnnunciView.getAnnuncioSelezionato(this.idAnnunciList);
                         int action = AnnunciView.showAzioniAnnuncio();
+                        AnnunciView.stampaMessaggio("Avete selezionato l'annuncio " + id + "(" + Objects.requireNonNull(Annuncio.findAnnuncioById(annunciList, id)).getDescrizione() + ")");
                         gestoreAzioni(id, action);
                     }
                     case 2 -> {

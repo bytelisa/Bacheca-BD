@@ -34,6 +34,15 @@ public class Annuncio {
         return idList;
     }
 
+    public static Annuncio findAnnuncioById(List<Annuncio> annuncioList, int id) {
+        for (Annuncio annuncio: annuncioList) {
+            if (annuncio.getId() == id) {
+                return annuncio;
+            }
+        }
+        return null;
+    }
+
     public int getId() {
         return id;
     }

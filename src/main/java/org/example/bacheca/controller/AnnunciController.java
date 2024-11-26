@@ -1,5 +1,7 @@
 package org.example.bacheca.controller;
 
+import org.example.bacheca.exception.DAOException;
+import org.example.bacheca.model.dao.AzioniAnnuncioDAO;
 import org.example.bacheca.model.domain.Annuncio;
 import org.example.bacheca.other.Printer;
 import org.example.bacheca.view.AnnunciView;
@@ -63,30 +65,43 @@ public class AnnunciController implements Controller{
 
     public void gestoreAzioni(int idAnnuncio, int azione) {
 
-        switch (azione) {
-            case 1 -> {
-                //modifica
-                Printer.println("Non ancora implementato.");
-            }
-            case 2 -> {
-                //elimina
-                Printer.println("Non ancora implementato.");
-            }
-            case 3 -> {
-                //commenti pubblici
-                Printer.println("Non ancora implementato.");
-            }
-            case 4 -> {
-                //messaggi privati
-                Printer.println("Non ancora implementato.");
-            }
-            case 5 -> {
-                //ritorna alla lista di annunci
-                AnnunciView.mostraAnnunci(this.annunciList);
-                start();
+        //todo stored procedures per tutte queste azioni!!!!
+
+        AzioniAnnuncioDAO dao = new AzioniAnnuncioDAO();
+        try {
+            switch (azione) {
+                case 1 -> {
+                    //modifica
+                    //tramite view costruisce nuovo Annuncio
+                    dao.execute(1);
+                    Printer.println("Non ancora implementato.");
+                }
+                case 2 -> {
+                    //elimina
+                    dao.execute(2);
+                    Printer.println("Non ancora implementato.");
+                }
+                case 3 -> {
+                    //commenti pubblici
+                    dao.execute(3);
+                    Printer.println("Non ancora implementato.");
+                }
+                case 4 -> {
+                    //messaggi privati
+                    dao.execute(4);
+                    Printer.println("Non ancora implementato.");
+                }
+                case 5 -> {
+                    //ritorna alla lista di annunci
+                    AnnunciView.mostraAnnunci(this.annunciList);
+                    start();
+                }
+
+                default -> Printer.errorPrint("Invalid input.");
             }
 
-            default -> Printer.errorPrint("Invalid input.");
+        } catch (DAOException e) {
+            throw new RuntimeException(e);
         }
 
     }

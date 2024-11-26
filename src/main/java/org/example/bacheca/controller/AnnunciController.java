@@ -41,7 +41,7 @@ public class AnnunciController implements Controller{
                     case 1 -> {
                         //selezionare un annuncio
                         int id = AnnunciView.getAnnuncioSelezionato(this.idAnnunciList);
-                        AnnunciView.stampaMessaggio("Annuncio selezionato: " + "\"" + Objects.requireNonNull(Annuncio.findAnnuncioById(annunciList, id)).getDescrizione() + "\"");
+                        AnnunciView.stampaMessaggioBlu("Annuncio selezionato: " + "\"" + Objects.requireNonNull(Annuncio.findAnnuncioById(annunciList, id)).getDescrizione() + "\"");
 
                         int action = AnnunciView.showAzioniAnnuncio();
                         gestoreAzioni(id, action);
@@ -74,10 +74,10 @@ public class AnnunciController implements Controller{
                 switch (choice) {
                     case 1 -> {
                         //selezionare un annuncio
-                        int indice = AnnunciView.selezionaRisultato(this.idAnnunciList);
+                        int indice = AnnunciView.selezionaRisultato(this.annunciList.size());
 
                         Annuncio selezionato = annunciList.get(indice - 1);
-                        AnnunciView.stampaMessaggio("Annuncio selezionato: " + "\"" + selezionato.getDescrizione() + "\"");
+                        AnnunciView.stampaMessaggioBlu("Annuncio selezionato: " + "\"" + selezionato.getDescrizione() + "\"");
 
                         int action = AnnunciView.showAzioniAnnuncioPubblico();
                         gestoreAzioniPubbliche(selezionato, action);

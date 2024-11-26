@@ -14,7 +14,7 @@ public class AnnunciView {
 
 
     public static int showMenuAnnunci() throws IOException {
-        Printer.printlnBlu("......................GESTIONE ANNUNCI......................");
+        Printer.printlnBlu(".......................................................");
         Printer.println("Cosa vuoi fare?");
         Printer.println("    1. Seleziona un annuncio.\n    2. Esci.");
 
@@ -89,22 +89,24 @@ public class AnnunciView {
 
             Printer.print("Input invalido! ");
         }
+        Printer.println(" ");
         return idAnnuncio;
     }
 
-    public static int selezionaRisultato(List<Integer> idValidi) throws IOException {
+    public static int selezionaRisultato(int max) throws IOException {
         Scanner input = new Scanner(System.in);
         int index;
 
         while (true) {
-            Printer.print("ID dell'annuncio selezionato: ");
+            Printer.print("Indice dell'annuncio selezionato: ");
             index = input.nextInt();
 
-            if (idValidi.contains(index)) {
+            if (index > 0 && index <= max) {
                 break;
             }
             Printer.print("Input invalido! ");
         }
+        Printer.println(" ");
         return index;
     }
 
@@ -123,6 +125,9 @@ public class AnnunciView {
 
     public static void stampaMessaggio(String messaggio){
         Printer.println(messaggio);
+    }
+    public static void stampaMessaggioBlu(String messaggio){
+        Printer.printlnBlu(messaggio);
     }
 
     public static Annuncio modificaAnnuncio(Annuncio vecchioAnnuncio) {

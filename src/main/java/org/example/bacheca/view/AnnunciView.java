@@ -1,7 +1,5 @@
 package org.example.bacheca.view;
 
-import org.example.bacheca.exception.DAOException;
-import org.example.bacheca.model.dao.CreaAnnuncioDAO;
 import org.example.bacheca.model.domain.Annuncio;
 import org.example.bacheca.other.Printer;
 
@@ -118,12 +116,11 @@ public class AnnunciView {
             Printer.print("L'oggetto è stato venduto? (si/no): 2");
             while (true) {
                 stato = reader.readLine();
-                Printer.errorPrint(stato);
 
                 if (Objects.equals(stato, "si") || Objects.equals(stato, "no")) {
                     break;
                 } else {
-                    Printer.errorPrint("Opzioni valide: si/no");
+                    Printer.errorPrintln("Opzioni valide: si/no");
                 }
             }
 
@@ -136,6 +133,14 @@ public class AnnunciView {
         }
 
         return annuncioModificato;
+    }
+
+    public static int chiediConferma() {
+        Printer.errorPrint("Attenzione.");
+        Printer.println("Stai cercando di eliminare un annuncio. Inserisci l'id dell'annuncio per confermare: ");
+        Scanner input = new Scanner(System.in);
+
+        return input.nextInt();
     }
 
 }

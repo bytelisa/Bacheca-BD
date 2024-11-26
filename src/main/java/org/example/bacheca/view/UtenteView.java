@@ -107,7 +107,6 @@ public class UtenteView {
         Printer.println(messaggio);
     }
 
-
     public void printCategorie(){
         /* da finire
          */

@@ -5,7 +5,6 @@ import org.example.bacheca.model.dao.AzioniAnnuncioDAO;
 import org.example.bacheca.model.domain.Annuncio;
 import org.example.bacheca.other.Printer;
 import org.example.bacheca.view.AnnunciView;
-import org.example.bacheca.view.UtenteView;
 
 import java.io.IOException;
 import java.util.List;
@@ -72,16 +71,22 @@ public class AnnunciController implements Controller{
             switch (azione) {
                 case 1 -> {
                     //modifica
-                    //tramite view costruisce nuovo Annuncio modificato
                     annuncio = AnnunciView.modificaAnnuncio(Objects.requireNonNull(Annuncio.findAnnuncioById(this.annunciList, idAnnuncio)));
-                    Printer.errorPrint("STATO: " + annuncio.getStato());
                     dao.execute(1, annuncio);
 
                 }
                 case 2 -> {
                     //elimina
-                    dao.execute(2);
-                    Printer.println("Non ancora implementato.");
+
+                    if (AnnunciView.chiediConferma() == idAnnuncio) {
+                        annuncio = new Annuncio(idAnnuncio);
+                        dao.execute(2, annuncio);
+                    } else {
+                        AnnunciView.stampaMessaggio("L'annuncio non verrà eliminato.");
+                        AnnunciView.mostraAnnunci(this.annunciList);
+                        start();
+                    }
+
                 }
                 case 3 -> {
                     //commenti pubblici
@@ -99,7 +104,7 @@ public class AnnunciController implements Controller{
                     start();
                 }
 
-                default -> Printer.errorPrint("Invalid input.");
+                default -> Printer.errorPrintln("Invalid input.");
             }
 
         } catch (DAOException e) {

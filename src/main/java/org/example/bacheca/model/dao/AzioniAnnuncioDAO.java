@@ -38,7 +38,8 @@ public class AzioniAnnuncioDAO implements GenericDAO {
                 }
                 case 2 -> {
                     //elimina
-                    System.out.println("a");
+                    cs = conn.prepareCall(" call elimina_annuncio(?)");
+                    cs.setInt(1, annuncio.getId());
                 }
                 case 3 -> {
                     //commenti pubblici

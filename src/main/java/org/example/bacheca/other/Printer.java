@@ -33,7 +33,8 @@ public class Printer {
 
 
     //stampa messaggio di errore
-    public static void errorPrint(String message) {
+    public static void errorPrintln(String message) {
         System.out.println(ANSI_RED + message + ANSI_RESET);
     }
+    public static void errorPrint(String message) { System.out.print(ANSI_RED + message + ANSI_RESET); }
 }

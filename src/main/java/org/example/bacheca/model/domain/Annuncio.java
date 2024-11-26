@@ -13,12 +13,14 @@ public class Annuncio {
     private String categoria;
 
     public Annuncio(float prezzo, String descrizione, String venditore, String categoria){
+        super();
         setPrezzo(prezzo);
         setDescrizione(descrizione);
         setVenditore(venditore);
         setCategoria(categoria);
     }
     public Annuncio(int id, float prezzo, String descrizione, String venditore, String categoria){
+        super();
         setId(id);
         setPrezzo(prezzo);
         setDescrizione(descrizione);
@@ -32,6 +34,11 @@ public class Annuncio {
         setDescrizione(descrizione);
         setCategoria(categoria);
         setStato(stringToStato(stato));
+    }
+
+    public Annuncio (int id) {
+        super();
+        setId(id);
     }
 
     public static List<Integer> getIdList(List<Annuncio> annunciList) {

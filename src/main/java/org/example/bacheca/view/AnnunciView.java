@@ -113,7 +113,7 @@ public class AnnunciView {
             Printer.print("Nuova categoria: ");
             categoria = reader.readLine();
 
-            Printer.print("L'oggetto è stato venduto? (si/no): 2");
+            Printer.print("L'oggetto è stato venduto? (si/no): ");
             while (true) {
                 stato = reader.readLine();
 
@@ -136,7 +136,7 @@ public class AnnunciView {
     }
 
     public static int chiediConferma() {
-        Printer.errorPrint("Attenzione.");
+        Printer.errorPrint("Attenzione! ");
         Printer.println("Stai cercando di eliminare un annuncio. Inserisci l'id dell'annuncio per confermare: ");
         Scanner input = new Scanner(System.in);
 

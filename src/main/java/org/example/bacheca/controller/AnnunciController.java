@@ -45,6 +45,7 @@ public class AnnunciController implements Controller{
 
                         int action = AnnunciView.showAzioniAnnuncio();
                         gestoreAzioni(id, action);
+
                     }
                     case 2 -> {
                         //tornare indietro
@@ -62,31 +63,31 @@ public class AnnunciController implements Controller{
         }
     }
 
+
     public void gestoreAzioni(int idAnnuncio, int azione) {
 
-        //todo stored procedures per tutte queste azioni!!!!
         Annuncio annuncio;
         AzioniAnnuncioDAO dao = new AzioniAnnuncioDAO();
+
         try {
             switch (azione) {
                 case 1 -> {
                     //modifica
                     annuncio = AnnunciView.modificaAnnuncio(Objects.requireNonNull(Annuncio.findAnnuncioById(this.annunciList, idAnnuncio)));
                     dao.execute(1, annuncio);
-
                 }
                 case 2 -> {
                     //elimina
-
                     if (AnnunciView.chiediConferma() == idAnnuncio) {
                         annuncio = new Annuncio(idAnnuncio);
                         dao.execute(2, annuncio);
+                        AnnunciView.stampaMessaggio("L'annuncio è stato eliminato.");
+
                     } else {
                         AnnunciView.stampaMessaggio("L'annuncio non verrà eliminato.");
                         AnnunciView.mostraAnnunci(this.annunciList);
                         start();
                     }
-
                 }
                 case 3 -> {
                     //commenti pubblici

@@ -42,7 +42,7 @@ public class AnnunciController implements Controller{
                     case 1 -> {
                         //selezionare un annuncio
                         int id = AnnunciView.getAnnuncioSelezionato(this.idAnnunciList);
-                        AnnunciView.stampaMessaggio("Annuncio selezionato: " + "\" " + Objects.requireNonNull(Annuncio.findAnnuncioById(annunciList, id)).getDescrizione() + "\"");
+                        AnnunciView.stampaMessaggio("Annuncio selezionato: " + "\"" + Objects.requireNonNull(Annuncio.findAnnuncioById(annunciList, id)).getDescrizione() + "\"");
 
                         int action = AnnunciView.showAzioniAnnuncio();
                         gestoreAzioni(id, action);

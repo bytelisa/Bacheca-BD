@@ -38,7 +38,7 @@ public class AnnunciView {
     public static int showAzioniAnnuncio() throws IOException {
         Printer.printlnBlu("..................MENU ANNUNCIO..................");
         Printer.println("Cosa vuoi fare con questo annuncio?");
-        Printer.println("    1. Modifica.\n    2. Elimina.\n    3. Leggi commenti pubblici su questo annuncio.\n    4. Leggi messaggi privati riguardo questo annuncio.\n 5. Torna ai tuoi annunci.");
+        Printer.println("    1. Modifica.\n    2. Elimina.\n    3. Leggi commenti pubblici su questo annuncio.\n    4. Leggi messaggi privati riguardo questo annuncio.\n   5. Torna ai tuoi annunci.");
 
 
         Scanner input = new Scanner(System.in);
@@ -99,25 +99,27 @@ public class AnnunciView {
         try{
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-            Printer.println("...............MODIFICA ANNUNCIO...............");
+            Printer.printlnBlu("...............MODIFICA ANNUNCIO...............");
 
-            Printer.println("Vecchia descrizione: " + vecchioAnnuncio.getDescrizione());
+            Printer.println("Vecchia descrizione: \"" + vecchioAnnuncio.getDescrizione() + "\"");
             Printer.print("Nuova descrizione (max. 200 caratteri): ");
             descrizione = reader.readLine();
 
-            Printer.print("Vecchio prezzo: " + vecchioAnnuncio.getPrezzo() + "€");
+            Printer.println("Vecchio prezzo: " + vecchioAnnuncio.getPrezzo() + "€");
             Printer.print("Nuovo prezzo(€): ");
             prezzo = Float.valueOf(reader.readLine());
             //gestisci errore in caso venga inserita una stringa
 
             Printer.println("Vecchia categoria:" + vecchioAnnuncio.getCategoria());
-            Printer.println("Nuova categoria: ");
+            Printer.print("Nuova categoria: ");
             categoria = reader.readLine();
 
             Printer.println("L'oggetto è stato venduto? (si/no):");
             String stato = reader.readLine();
 
             annuncioModificato = new Annuncio(vecchioAnnuncio.getId(), descrizione, prezzo, categoria, stato);
+
+            Printer.println("Le tue modifiche sono state salvate.");
 
         } catch (IOException e) {
             e.printStackTrace();

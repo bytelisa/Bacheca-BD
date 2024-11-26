@@ -37,11 +37,13 @@ public class AnnunciController implements Controller{
 
                 switch (choice) {
                     case 1 -> {
+                        //selezionare un annuncio
                         int id = AnnunciView.getAnnuncioSelezionato(this.idAnnunciList);
                         int action = AnnunciView.showAzioniAnnuncio();
                         gestoreAzioni(id, action);
                     }
                     case 2 -> {
+                        //tornare indietro
                         UtenteController utenteController = new UtenteController(user);
                         utenteController.start();
                     }
@@ -59,11 +61,27 @@ public class AnnunciController implements Controller{
     public void gestoreAzioni(int idAnnuncio, int azione) {
 
         switch (azione) {
-            case 1 -> Printer.println("Non ancora implementato.");
-            case 2 -> Printer.println("Non ancora implementato.");
-            case 3 -> Printer.println("Non ancora implementato.");
-            case 4 -> Printer.println("Non ancora implementato.");
-            case 5 -> Printer.println("Non ancora implementato.");
+            case 1 -> {
+                //modifica
+                Printer.println("Non ancora implementato.");
+            }
+            case 2 -> {
+                //elimina
+                Printer.println("Non ancora implementato.");
+            }
+            case 3 -> {
+                //commenti pubblici
+                Printer.println("Non ancora implementato.");
+            }
+            case 4 -> {
+                //messaggi privati
+                Printer.println("Non ancora implementato.");
+            }
+            case 5 -> {
+                //ritorna alla lista di annunci
+                AnnunciView.mostraAnnunci(this.annunciList);
+                start();
+            }
 
             default -> Printer.errorPrint("Invalid input.");
         }

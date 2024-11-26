@@ -94,6 +94,7 @@ public class AnnunciView {
 
         String descrizione, categoria;
         Float prezzo;
+        Annuncio annuncioModificato = null;
 
         try{
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -116,15 +117,13 @@ public class AnnunciView {
             Printer.println("L'oggetto è stato venduto? (si/no):");
             String stato = reader.readLine();
 
-            Annuncio nuovoAnnuncio = new Annuncio(vecchioAnnuncio.getId(), descrizione, prezzo, categoria, stato);
+            annuncioModificato = new Annuncio(vecchioAnnuncio.getId(), descrizione, prezzo, categoria, stato);
 
-            //istanzio il dao che chiamerà la stored procedure
-            CreaAnnuncioDAO creaAnnuncioDAO = new CreaAnnuncioDAO(nuovoAnnuncio);
-            creaAnnuncioDAO.execute();
-
-        } catch (IOException | DAOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return annuncioModificato;
     }
 
 }

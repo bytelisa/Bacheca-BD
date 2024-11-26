@@ -1,5 +1,8 @@
 package org.example.bacheca.model.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Annuncio {
 
     private int id;
@@ -21,6 +24,14 @@ public class Annuncio {
         setDescrizione(descrizione);
         setVenditore(venditore);
         setCategoria(categoria);
+    }
+
+    public List<Integer> getIdList(List<Annuncio> annunciList) {
+        List<Integer> idList = new ArrayList<>();
+        for (Annuncio annuncio: annunciList){
+            idList.add(annuncio.getId());
+        }
+        return idList;
     }
 
     public int getId() {

@@ -11,7 +11,7 @@ public class AnnunciView {
 
 
     public static int showMenuAnnunci() throws IOException {
-        Printer.printlnBlu("..................MENU ANNUNCI..................");
+        Printer.printlnBlu("..................GESTIONE ANNUNCI..................");
         Printer.println("Cosa vuoi fare?");
         Printer.println("    1. Seleziona un annuncio.\n    2. Esci.");
 
@@ -20,10 +20,10 @@ public class AnnunciView {
         int choice;
 
         while (true) {
-            Printer.print("Opzione scelta (1-5): ");
+            Printer.print("Opzione scelta (1-2): ");
             choice = input.nextInt();
 
-            if (choice >= 1 && choice <= 5) {
+            if (choice >= 1 && choice <= 2) {
                 break;
             }
             Printer.print("Input invalido, inserire un numero valido: ");
@@ -33,7 +33,7 @@ public class AnnunciView {
 
     public static int showAzioniAnnuncio() throws IOException {
         Printer.printlnBlu("..................MENU ANNUNCIO..................");
-        Printer.println("Cosa vuoi fare?");
+        Printer.println("Cosa vuoi fare con questo annuncio?");
         Printer.println("    1. Modifica.\n    2. Elimina.\n    3. Leggi commenti pubblici su questo annuncio.\n    4. Leggi messaggi privati riguardo questo annuncio.\n 5. Torna ai tuoi annunci.");
 
 
@@ -47,7 +47,7 @@ public class AnnunciView {
             if (choice >= 1 && choice <= 5) {
                 break;
             }
-            Printer.print("Input invalido, inserire un numero valido: ");
+            Printer.print("Input invalido! ");
         }
         return choice;
     }
@@ -64,7 +64,7 @@ public class AnnunciView {
                 break;
             }
 
-            Printer.print("Input invalido, inserire un ID valido: ");
+            Printer.print("Input invalido! ");
         }
         return idAnnuncio;
     }

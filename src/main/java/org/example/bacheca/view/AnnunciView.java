@@ -1,9 +1,13 @@
 package org.example.bacheca.view;
 
+import org.example.bacheca.exception.DAOException;
+import org.example.bacheca.model.dao.CreaAnnuncioDAO;
 import org.example.bacheca.model.domain.Annuncio;
 import org.example.bacheca.other.Printer;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Scanner;
 
@@ -84,6 +88,43 @@ public class AnnunciView {
 
     public static void stampaMessaggio(String messaggio){
         Printer.println(messaggio);
+    }
+
+    public static Annuncio getInfoAnnuncio(Annuncio vecchioAnnuncio) {
+
+        String descrizione, categoria;
+        Float prezzo;
+
+        try{
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+            Printer.println("...............MODIFICA ANNUNCIO...............");
+
+            Printer.println("Vecchia descrizione: " + vecchioAnnuncio.getDescrizione());
+            Printer.print("Nuova descrizione (max. 200 caratteri): ");
+            descrizione = reader.readLine();
+
+            Printer.print("Vecchio prezzo: " + vecchioAnnuncio.getPrezzo() + "€");
+            Printer.print("Nuovo prezzo(€): ");
+            prezzo = Float.valueOf(reader.readLine());
+            //gestisci errore in caso venga inserita una stringa
+
+            Printer.println("Vecchia categoria:" + vecchioAnnuncio.getCategoria());
+            Printer.println("Nuova categoria: ");
+            categoria = reader.readLine();
+
+            Printer.println("L'oggetto è stato venduto? (si/no):");
+            String stato = reader.readLine();
+
+            Annuncio nuovoAnnuncio = new Annuncio(vecchioAnnuncio.getId(), descrizione, prezzo, categoria, stato);
+
+            //istanzio il dao che chiamerà la stored procedure
+            CreaAnnuncioDAO creaAnnuncioDAO = new CreaAnnuncioDAO(nuovoAnnuncio);
+            creaAnnuncioDAO.execute();
+
+        } catch (IOException | DAOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -29,11 +29,12 @@ public class AzioniAnnuncioDAO implements GenericDAO {
             switch (azione) {
                 case 1 -> {
                     //modifica
-                    cs = conn.prepareCall(" call modifica_annuncio(?,?,?,?)");
+                    cs = conn.prepareCall(" call modifica_annuncio(?,?,?,?,?)");
                     cs.setInt(1, annuncio.getId());
                     cs.setFloat(2, annuncio.getPrezzo());
                     cs.setString(3, annuncio.getDescrizione());
                     cs.setString(4, annuncio.getCategoria());
+                    cs.setBoolean(5, annuncio.getStato());
                 }
                 case 2 -> {
                     //elimina
@@ -47,7 +48,7 @@ public class AzioniAnnuncioDAO implements GenericDAO {
                     //messaggi privati
                     System.out.println("a");
                 }
-                default -> throw new DAOException("AzioniAnnuncioDAO error: " + e.getMessage());
+                default -> throw new DAOException("AzioniAnnuncioDAO error: azione invalida.");
 
             }
 

@@ -26,6 +26,14 @@ public class Annuncio {
         setCategoria(categoria);
     }
 
+    public Annuncio(int id, String descrizione, float prezzo, String categoria, String stato){
+        setId(id);
+        setPrezzo(prezzo);
+        setDescrizione(descrizione);
+        setCategoria(categoria);
+        setStato(stringToStato(stato));
+    }
+
     public static List<Integer> getIdList(List<Annuncio> annunciList) {
         List<Integer> idList = new ArrayList<>();
         for (Annuncio annuncio: annunciList){
@@ -78,6 +86,15 @@ public class Annuncio {
             return "Invenduto";
         }
     }
+
+    public Boolean stringToStato(String stato){
+        if (stato == "si") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public void setStato(Boolean stato) {
         this.stato = stato;
     }

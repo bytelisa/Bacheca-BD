@@ -196,12 +196,13 @@ public class AnnunciController implements Controller{
                 }
                 case 4 -> {
                     //commenta
-                    dao.execute(4, annuncio, user, "commento");
+                    String commento = AnnunciView.inserisciMessaggio("Il tuo commento pubblico: ");
+                    dao.execute(4, annuncio, user, commento);
                 }
                 case 5 -> {
                     //invia un messaggio al venditore
-                    dao.execute(5, annuncio, user, "messaggio");
-
+                    String messaggio = AnnunciView.inserisciMessaggio("Il tuo messaggio privato per il venditore: ");
+                    dao.execute(5, annuncio, user, messaggio);
                 }
                 case 6 -> {
                     //ritorna alla lista di annunci

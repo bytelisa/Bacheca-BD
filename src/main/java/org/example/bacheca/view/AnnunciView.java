@@ -57,7 +57,7 @@ public class AnnunciView {
     public static int showAzioniAnnuncioPubblico() throws IOException {
 
         Printer.println("Cosa vuoi fare con questo annuncio?");
-        Printer.println("    1. Mostra informazioni del venditore.\n    2. Segui.\n    3. Leggi commenti pubblici su questo annuncio.\n    4. Commenta.\n    5. Invia un messaggio privato al venditore.\n    6.Torna ai risultati di ricerca.");
+        Printer.println("    1. Mostra informazioni del venditore.\n    2. Segui.\n    3. Leggi commenti pubblici su questo annuncio.\n    4. Commenta.\n    5. Invia un messaggio privato al venditore.\n    6. Torna ai risultati di ricerca.");
 
 
         Scanner input = new Scanner(System.in);
@@ -186,6 +186,19 @@ public class AnnunciView {
         Scanner input = new Scanner(System.in);
 
         return input.nextInt();
+    }
+
+    public static String inserisciMessaggio(String prompt) {
+
+        String contenuto;
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            contenuto = reader.readLine();
+            return contenuto;
+
+        } catch (IOException e){
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
 }

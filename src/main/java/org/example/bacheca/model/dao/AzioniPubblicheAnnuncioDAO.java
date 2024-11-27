@@ -34,7 +34,7 @@ public class AzioniPubblicheAnnuncioDAO implements GenericDAO{
             switch (azione) {
                 case 1 -> {
                     //info venditore
-
+                    //
                 }
                 case 2 -> {
                     //segui annuncio
@@ -45,7 +45,9 @@ public class AzioniPubblicheAnnuncioDAO implements GenericDAO{
                 }
                 case 3 -> {
                     //mostra commenti pubblici
-                    System.out.println("a");
+                    cs = conn.prepareCall(" call messaggi_annuncio(?,?)");
+                    cs.setInt(1, annuncio.getId());
+                    cs.setInt(2, COMMENTO_PUBBLICO.getId());
                 }
                 case 4 -> {
                     //commenta

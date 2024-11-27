@@ -1,5 +1,6 @@
 package org.example.bacheca.controller;
 
+import org.example.bacheca.exception.AlreadyFollowingException;
 import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.dao.AzioniAnnuncioDAO;
 import org.example.bacheca.model.dao.AzioniPubblicheAnnuncioDAO;
@@ -7,6 +8,7 @@ import org.example.bacheca.model.dao.CercaAnnuncioDAO;
 import org.example.bacheca.model.domain.Annuncio;
 import org.example.bacheca.other.Printer;
 import org.example.bacheca.view.AnnunciView;
+import org.example.bacheca.view.UtenteView;
 
 import java.io.IOException;
 import java.util.List;
@@ -43,7 +45,7 @@ public class AnnunciController implements Controller{
                     case 1 -> {
                         //selezionare un annuncio
                         int id = AnnunciView.getAnnuncioSelezionato(this.idAnnunciList);
-                        AnnunciView.stampaMessaggioBlu("Annuncio selezionato: " + "\"" + Objects.requireNonNull(Annuncio.findAnnuncioById(annunciList, id)).getDescrizione() + "\"");
+                        AnnunciView.stampaMessaggioBluln("Annuncio selezionato: " + "\"" + Objects.requireNonNull(Annuncio.findAnnuncioById(annunciList, id)).getDescrizione() + "\"");
 
                         int action = AnnunciView.showAzioniAnnuncio();
                         gestoreAzioni(id, action);
@@ -80,12 +82,15 @@ public class AnnunciController implements Controller{
                     case 1 -> {
                         //selezionare un annuncio
                         int indice = AnnunciView.selezionaRisultato(this.annunciList.size());
+                        while (true) {
+                            Annuncio selezionato = annunciList.get(indice - 1);
+                            AnnunciView.stampaMessaggioBluln("Annuncio selezionato: " + "\"" + selezionato.getDescrizione() + "\"");
 
-                        Annuncio selezionato = annunciList.get(indice - 1);
-                        AnnunciView.stampaMessaggioBlu("Annuncio selezionato: " + "\"" + selezionato.getDescrizione() + "\"");
-
-                        int action = AnnunciView.showAzioniAnnuncioPubblico();
-                        gestoreAzioniPubbliche(selezionato, action);
+                            int action = AnnunciView.showAzioniAnnuncioPubblico();
+                            if (gestoreAzioniPubbliche(selezionato, action) == 1) {
+                                break;
+                            }
+                        }
 
                     }
                     case 2 -> {
@@ -115,7 +120,7 @@ public class AnnunciController implements Controller{
                     //modifica
                     annuncio = AnnunciView.modificaAnnuncio(Objects.requireNonNull(Annuncio.findAnnuncioById(this.annunciList, idAnnuncio)));
                     dao.execute(1, annuncio);
-                    AnnunciView.stampaMessaggioBlu("La lista aggiornata dei tuoi annunci:");
+                    AnnunciView.stampaMessaggioBluln("La lista aggiornata dei tuoi annunci:");
                     ricaricaAnnunci();
                 }
                 case 2 -> {
@@ -124,7 +129,7 @@ public class AnnunciController implements Controller{
                         annuncio = new Annuncio(idAnnuncio);
                         dao.execute(2, annuncio);
                         AnnunciView.stampaMessaggio("L'annuncio è stato eliminato.");
-                        AnnunciView.stampaMessaggioBlu("La lista aggiornata dei tuoi annunci:");
+                        AnnunciView.stampaMessaggioBluln("La lista aggiornata dei tuoi annunci:");
                         ricaricaAnnunci();
 
                     } else {
@@ -170,7 +175,7 @@ public class AnnunciController implements Controller{
         }
     }
 
-    public void gestoreAzioniPubbliche(Annuncio annuncio, int azione) {
+    public int gestoreAzioniPubbliche(Annuncio annuncio, int azione) {
 
         AzioniPubblicheAnnuncioDAO dao = new AzioniPubblicheAnnuncioDAO();
 
@@ -183,7 +188,8 @@ public class AnnunciController implements Controller{
                 case 2 -> {
                     //segui annuncio
                     dao.execute(2, annuncio, user, null);
-
+                    AnnunciView.stampaMessaggioBlu("Ora segui questo annuncio!");
+                    AnnunciView.stampaMessaggio(" Controlla la sezione \"Aggiornamenti sugli annunci seguiti\" nel Menu Utente per visualizzare eventuali aggiornamenti a riguardo.");
                 }
                 case 3 -> {
                     //mostra commenti pubblici
@@ -199,16 +205,20 @@ public class AnnunciController implements Controller{
                 }
                 case 6 -> {
                     //ritorna alla lista di annunci
-                    AnnunciView.mostraAnnunci(this.annunciList);
-                    start();
+                    return 1;
                 }
 
                 default -> Printer.errorPrintln("Invalid input.");
             }
 
+        } catch(AlreadyFollowingException e){
+            Printer.errorPrint("Attenzione! ");
+            UtenteView.stampaMessaggio("Stai già seguendo questo annuncio. Controlla eventuali aggiornamenti nel Menu Utente.");
         } catch (DAOException e) {
             throw new RuntimeException(e.getMessage());
         }
+
+        return 0;
     }
 
 }

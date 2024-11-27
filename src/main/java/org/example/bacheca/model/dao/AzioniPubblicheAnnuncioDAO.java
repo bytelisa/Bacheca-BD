@@ -1,5 +1,6 @@
 package org.example.bacheca.model.dao;
 
+import org.example.bacheca.exception.AlreadyFollowingException;
 import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.domain.Annuncio;
 import org.example.bacheca.model.domain.Utente;
@@ -17,7 +18,7 @@ import static org.example.bacheca.model.domain.TipoMessaggio.MESSAGGIO_PRIVATO;
 public class AzioniPubblicheAnnuncioDAO implements GenericDAO{
 
     @Override
-    public List<Annuncio> execute(Object... params) throws DAOException {
+    public List<Annuncio> execute(Object... params) throws DAOException, AlreadyFollowingException {
 
         //il primo parametro indica l'azione, il secondo contiene le info necessarie
         int azione = (int) params[0];
@@ -34,7 +35,7 @@ public class AzioniPubblicheAnnuncioDAO implements GenericDAO{
             switch (azione) {
                 case 1 -> {
                     //info venditore
-                    //
+
                 }
                 case 2 -> {
                     //segui annuncio
@@ -67,13 +68,16 @@ public class AzioniPubblicheAnnuncioDAO implements GenericDAO{
                     cs.setString(4, user); //mittente
                     cs.setString(5, annuncio.getVenditore()); //destinatario
                 }
-                default -> throw new DAOException("AzioniAnnuncioDAO error: azione invalida.");
+                default -> throw new DAOException("AzioniPubblicheDAO error: azione invalida.");
 
             }
 
             ResultSet rs = cs.executeQuery();
 
         } catch (SQLException e) {
+            if (e.getMessage().startsWith("Duplicate entry")) {
+                throw new AlreadyFollowingException();
+            }
             throw new DAOException("AzioniAnnuncioDAO error: " + e.getMessage());
 
         }

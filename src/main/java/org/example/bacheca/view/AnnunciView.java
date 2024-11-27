@@ -57,17 +57,17 @@ public class AnnunciView {
     public static int showAzioniAnnuncioPubblico() throws IOException {
 
         Printer.println("Cosa vuoi fare con questo annuncio?");
-        Printer.println("    1. Mostra informazioni del venditore.\n    2. Segui.\n    3. Leggi commenti pubblici su questo annuncio.\n    4. Commenta.\n    5. Invia un messaggio privato al venditore.\n    Torna ai risultati di ricerca.");
+        Printer.println("    1. Mostra informazioni del venditore.\n    2. Segui.\n    3. Leggi commenti pubblici su questo annuncio.\n    4. Commenta.\n    5. Invia un messaggio privato al venditore.\n    6.Torna ai risultati di ricerca.");
 
 
         Scanner input = new Scanner(System.in);
         int choice;
 
         while (true) {
-            Printer.print("Opzione scelta (1-5): ");
+            Printer.print("Opzione scelta (1-6): ");
             choice = input.nextInt();
 
-            if (choice >= 1 && choice <= 5) {
+            if (choice >= 1 && choice <= 6) {
                 break;
             }
             Printer.print("Input invalido! ");
@@ -127,8 +127,11 @@ public class AnnunciView {
     public static void stampaMessaggio(String messaggio){
         Printer.println(messaggio);
     }
-    public static void stampaMessaggioBlu(String messaggio){
+    public static void stampaMessaggioBluln(String messaggio){
         Printer.printlnBlu(messaggio);
+    }
+    public static void stampaMessaggioBlu(String messaggio){
+        Printer.printBlu(messaggio);
     }
 
     public static Annuncio modificaAnnuncio(Annuncio vecchioAnnuncio) {

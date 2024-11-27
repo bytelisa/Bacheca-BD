@@ -178,11 +178,11 @@ public class AnnunciController implements Controller{
             switch (azione) {
                 case 1 -> {
                     //info venditore
-                    dao.execute(1, annuncio, user);
+                    dao.execute(1, annuncio, user, null);
                 }
                 case 2 -> {
                     //segui annuncio
-                    dao.execute(4, annuncio, user);
+                    dao.execute(2, annuncio, user, null);
 
                 }
                 case 3 -> {
@@ -194,7 +194,7 @@ public class AnnunciController implements Controller{
                 }
                 case 5 -> {
                     //invia un messaggio al venditore
-                    dao.execute(4, annuncio, user, "messaggio");
+                    dao.execute(5, annuncio, user, "messaggio");
 
                 }
                 case 6 -> {

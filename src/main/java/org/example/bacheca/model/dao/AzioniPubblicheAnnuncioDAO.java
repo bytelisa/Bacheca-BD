@@ -22,7 +22,7 @@ public class AzioniPubblicheAnnuncioDAO implements GenericDAO{
         //il primo parametro indica l'azione, il secondo contiene le info necessarie
         int azione = (int) params[0];
         Annuncio annuncio = (Annuncio) params[1];
-        Utente user = (Utente) params[2];
+        String user = (String) params[2];
         String contenuto = (String) params[3];
 
         List<Annuncio> resultList = new ArrayList<>();
@@ -39,7 +39,7 @@ public class AzioniPubblicheAnnuncioDAO implements GenericDAO{
                 case 2 -> {
                     //segui annuncio
                     cs = conn.prepareCall(" call seguire_annuncio(?,?)");
-                    cs.setString(1, user.getUsername());
+                    cs.setString(1, user);
                     cs.setInt(2, annuncio.getId());
 
                 }
@@ -55,7 +55,7 @@ public class AzioniPubblicheAnnuncioDAO implements GenericDAO{
                     cs.setString(1, contenuto);
                     cs.setInt(2, COMMENTO_PUBBLICO.getId());
                     cs.setInt(3, annuncio.getId());
-                    cs.setString(4, user.getUsername()); //mittente
+                    cs.setString(4, user); //mittente
                     cs.setString(5, annuncio.getVenditore()); //destinatario
                 }
                 case 5 -> {
@@ -64,12 +64,14 @@ public class AzioniPubblicheAnnuncioDAO implements GenericDAO{
                     cs.setString(1, contenuto);
                     cs.setInt(2, MESSAGGIO_PRIVATO.getId());
                     cs.setInt(3, annuncio.getId());
-                    cs.setString(4, user.getUsername()); //mittente
+                    cs.setString(4, user); //mittente
                     cs.setString(5, annuncio.getVenditore()); //destinatario
                 }
                 default -> throw new DAOException("AzioniAnnuncioDAO error: azione invalida.");
 
             }
+
+            ResultSet rs = cs.executeQuery();
 
         } catch (SQLException e) {
             throw new DAOException("AzioniAnnuncioDAO error: " + e.getMessage());

@@ -192,6 +192,7 @@ public class AnnunciView {
 
         String contenuto;
         try {
+            stampaMessaggioBlu(prompt);
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             contenuto = reader.readLine();
             return contenuto;

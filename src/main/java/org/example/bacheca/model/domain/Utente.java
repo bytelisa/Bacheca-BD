@@ -1,16 +1,16 @@
 package org.example.bacheca.model.domain;
 
 
-public class Credentials {
+public class Utente {
 
     private final String username;
     private final String password;
-    private final Role role;
+    private final Ruolo ruolo;
 
-    public Credentials(String username, String password, Role role) {
+    public Utente(String username, String password, Ruolo ruolo) {
         this.username = username;
         this.password = password;
-        this.role = role;
+        this.ruolo = ruolo;
     }
 
     public String getUsername() {
@@ -21,7 +21,7 @@ public class Credentials {
         return password;
     }
 
-    public Role getRole() {
-        return role;
+    public Ruolo getRole() {
+        return ruolo;
     }
 }

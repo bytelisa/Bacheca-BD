@@ -2,16 +2,16 @@ package org.example.bacheca.controller;
 
 import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.dao.LoginDAO;
-import org.example.bacheca.model.domain.Credentials;
+import org.example.bacheca.model.domain.Utente;
 import org.example.bacheca.other.Printer;
 import org.example.bacheca.view.LoginView;
 import java.io.IOException;
 
 public class LoginController implements Controller {
 
-    Credentials cred = null;
+    Utente cred = null;
 
-    public Credentials getCred() { return cred; }
+    public Utente getCred() { return cred; }
 
     @Override
     public void start() {

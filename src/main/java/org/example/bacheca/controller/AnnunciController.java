@@ -178,7 +178,7 @@ public class AnnunciController implements Controller{
             switch (azione) {
                 case 1 -> {
                     //info venditore
-                    dao.execute();
+                    dao.execute(1, annuncio, user);
                 }
                 case 2 -> {
                     //segui annuncio

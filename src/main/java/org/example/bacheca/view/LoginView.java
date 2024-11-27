@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 
-import org.example.bacheca.model.domain.Credentials;
+import org.example.bacheca.model.domain.Utente;
 import org.example.bacheca.other.Printer;
 
 public class LoginView {
-    public static Credentials authenticate() throws IOException {
+    public static Utente authenticate() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Printer.println("__________________________________________________________");
 
@@ -20,6 +20,6 @@ public class LoginView {
         String password = reader.readLine();
 
 
-        return new Credentials(username, password, null);
+        return new Utente(username, password, null);
     }
 }

@@ -1,10 +1,10 @@
 package org.example.bacheca.controller;
 
-import org.example.bacheca.model.domain.Credentials;
+import org.example.bacheca.model.domain.Utente;
 
 public class ApplicationController implements Controller {
 
-    Credentials cred;
+    Utente cred;
 
     @Override
     public void start() {

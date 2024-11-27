@@ -1,4 +1,4 @@
-Progetto realizzato per l'esame Basi di Dati.
+### <h1> Progetto realizzato per l'esame Basi di Dati. </h1>
 
 Specifica del minimondo:
 Si vuole realizzare un sistema informativo per la gestione di una bacheca elettronica di annunci. Tale bacheca permette agli utenti del sistema di inserire annunci per la vendita di materiale usato, di scambiare messaggi tra di loro (in maniera privata) per accordarsi sulla vendita/consegna dell’oggetto, o di inserire domande (in maniera pubblica) sull’oggetto. 

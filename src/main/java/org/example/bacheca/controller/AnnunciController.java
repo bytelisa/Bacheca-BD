@@ -2,6 +2,7 @@ package org.example.bacheca.controller;
 
 import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.dao.AzioniAnnuncioDAO;
+import org.example.bacheca.model.dao.CercaAnnuncioDAO;
 import org.example.bacheca.model.domain.Annuncio;
 import org.example.bacheca.other.Printer;
 import org.example.bacheca.view.AnnunciView;
@@ -13,7 +14,7 @@ import java.util.Objects;
 public class AnnunciController implements Controller{
 
     private final String user;
-    private final List<Annuncio> annunciList;
+    private List<Annuncio> annunciList;
     private final List<Integer> idAnnunciList;
 
 
@@ -46,6 +47,9 @@ public class AnnunciController implements Controller{
                         int action = AnnunciView.showAzioniAnnuncio();
                         gestoreAzioni(id, action);
 
+                        /*al termine dell'azione ricarico gli annunci aggiornati
+                        CercaAnnuncioDAO dao = new CercaAnnuncioDAO();
+                        annunciList = dao.execute(user, "2");*/
                     }
                     case 2 -> {
                         //tornare indietro
@@ -110,6 +114,8 @@ public class AnnunciController implements Controller{
                     //modifica
                     annuncio = AnnunciView.modificaAnnuncio(Objects.requireNonNull(Annuncio.findAnnuncioById(this.annunciList, idAnnuncio)));
                     dao.execute(1, annuncio);
+                    AnnunciView.stampaMessaggioBlu("La lista aggiornata dei tuoi annunci:");
+                    ricaricaAnnunci();
                 }
                 case 2 -> {
                     //elimina
@@ -117,6 +123,8 @@ public class AnnunciController implements Controller{
                         annuncio = new Annuncio(idAnnuncio);
                         dao.execute(2, annuncio);
                         AnnunciView.stampaMessaggio("L'annuncio è stato eliminato.");
+                        AnnunciView.stampaMessaggioBlu("La lista aggiornata dei tuoi annunci:");
+                        ricaricaAnnunci();
 
                     } else {
                         AnnunciView.stampaMessaggio("L'annuncio non verrà eliminato.");
@@ -147,6 +155,18 @@ public class AnnunciController implements Controller{
             throw new RuntimeException(e);
         }
 
+    }
+
+    public void ricaricaAnnunci() {
+        try {
+            //al termine dell'azione ricarico gli annunci aggiornati
+            CercaAnnuncioDAO dao = new CercaAnnuncioDAO();
+            annunciList = dao.execute(user, "2");
+            AnnunciView.mostraAnnunci(this.annunciList);
+
+        } catch (DAOException e){
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
     public void gestoreAzioniPubbliche(Annuncio annuncio, int azione) {

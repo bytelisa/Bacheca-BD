@@ -38,13 +38,14 @@ public class LoginController implements Controller {
                 }
                 default -> {
                     Printer.errorPrintln("Credenziali sbagliate.");
-                    System.exit(0);
+                    start();
                 }
 
             }
 
         } catch (DAOException e){
             Printer.errorPrintln("Credenziali sbagliate.");
+            start();
             System.exit(0);
         }
     }

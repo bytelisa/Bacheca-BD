@@ -36,7 +36,7 @@ public class AnnunciView {
     public static int showAzioniAnnuncio() throws IOException {
         Printer.printlnBlu("..................MENU ANNUNCIO..................");
         Printer.println("Cosa vuoi fare con questo annuncio?");
-        Printer.println("    1. Modifica.\n    2. Elimina.\n    3. Leggi commenti pubblici su questo annuncio.\n    4. Leggi messaggi privati riguardo questo annuncio.\n   5. Torna ai tuoi annunci.");
+        Printer.println("    1. Modifica.\n    2. Elimina.\n    3. Leggi commenti pubblici su questo annuncio.\n    4. Leggi messaggi privati riguardo questo annuncio.\n    5. Torna ai tuoi annunci.");
 
 
         Scanner input = new Scanner(System.in);
@@ -114,12 +114,13 @@ public class AnnunciView {
         Printer.printlnBlu(".................. I TUOI ANNUNCI ..................");
 
         for (Annuncio risultatoCorrente: listaAnnunci) {
-            Printer.println(".......................................");
             Printer.print("(id." + risultatoCorrente.getId() + ") ");
             Printer.println(risultatoCorrente.getDescrizione());
             Printer.println("    - Prezzo: " + risultatoCorrente.getPrezzo() + "€");
             Printer.println("    - Categoria: " + risultatoCorrente.getCategoria());
             Printer.println("    - Stato: " + risultatoCorrente.statoToString());
+            Printer.println("_____________________________________________________________");
+
         }
     }
 

@@ -57,7 +57,7 @@ public class AnnunciView {
     public static int showAzioniAnnuncioPubblico() throws IOException {
 
         Printer.println("Cosa vuoi fare con questo annuncio?");
-        Printer.println("    1. Mostra informazioni del venditore.\n    2. Segui.\n    3. Leggi commenti pubblici su questo annuncio.\n    4. Commenta.\n   5. Torna ai risultati di ricerca.");
+        Printer.println("    1. Mostra informazioni del venditore.\n    2. Segui.\n    3. Leggi commenti pubblici su questo annuncio.\n    4. Commenta.\n    5. Invia un messaggio privato al venditore.\n    Torna ai risultati di ricerca.");
 
 
         Scanner input = new Scanner(System.in);

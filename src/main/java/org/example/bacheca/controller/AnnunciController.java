@@ -2,6 +2,7 @@ package org.example.bacheca.controller;
 
 import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.dao.AzioniAnnuncioDAO;
+import org.example.bacheca.model.dao.AzioniPubblicheAnnuncioDAO;
 import org.example.bacheca.model.dao.CercaAnnuncioDAO;
 import org.example.bacheca.model.domain.Annuncio;
 import org.example.bacheca.other.Printer;
@@ -170,7 +171,39 @@ public class AnnunciController implements Controller{
     }
 
     public void gestoreAzioniPubbliche(Annuncio annuncio, int azione) {
-        Printer.errorPrint("Da implementare.");
+
+        AzioniPubblicheAnnuncioDAO dao = new AzioniPubblicheAnnuncioDAO();
+
+        try {
+            switch (azione) {
+                case 1 -> {
+                    //info venditore
+                    dao.execute();
+                }
+                case 2 -> {
+                    //segui annuncio
+                }
+                case 3 -> {
+                    //mostra commenti pubblici
+                }
+                case 4 -> {
+                    //commenta
+                }
+                case 5 -> {
+                    //invia un messaggio al venditore
+                }
+                case 6 -> {
+                    //ritorna alla lista di annunci
+                    AnnunciView.mostraAnnunci(this.annunciList);
+                    start();
+                }
+
+                default -> Printer.errorPrintln("Invalid input.");
+            }
+
+        } catch (DAOException e) {
+            throw new RuntimeException(e.getMessage());
+        }
     }
 
 }

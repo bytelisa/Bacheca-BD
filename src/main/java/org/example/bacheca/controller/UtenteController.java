@@ -81,9 +81,9 @@ public class UtenteController implements Controller {
         List<Annuncio> risultatiRicerca;
 
         try {
-            List<String> filters = UtenteView.cercaAnnuncio();  //contenuto del filtro di ricerca e tipo di filtro (categoria, utente, descrizione)
+        List<String> filters = UtenteView.cercaAnnuncio();  //contenuto del filtro di ricerca e tipo di filtro (categoria, utente, descrizione)
 
-            risultatiRicerca = new CercaAnnuncioDAO().execute(filters.get(0), filters.get(1));
+            risultatiRicerca = new CercaAnnuncioDAO().execute(filters.get(0), filters.get(1), 0);
 
             //UtenteView.stampaMessaggio("Risultati di ricerca con il filtro: " + filters.getFirst());
             UtenteView.mostraAnnunci(risultatiRicerca);

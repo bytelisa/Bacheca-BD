@@ -1,0 +1,8 @@
+### <h1> Progetto realizzato per l'esame Basi di Dati. </h1>
+
+Specifica del minimondo:
+Si vuole realizzare un sistema informativo per la gestione di una bacheca elettronica di annunci. Tale bacheca permette agli utenti del sistema di inserire annunci per la vendita di materiale usato, di scambiare messaggi tra di loro (in maniera privata) per accordarsi sulla vendita/consegna dell’oggetto, o di inserire domande (in maniera pubblica) sull’oggetto. 
+Un utente del sistema si registra scegliendo un username univoco, inserendo tutte le sue informazioni anagrafiche, indicando un indirizzo di residenza ed eventualmente un indirizzo di fatturazione, un numero arbitrario di recapiti (telefono, cellulare, e-mail) indicandone uno come mezzo di comunicazione preferito. 
+I gestori del servizio possono creare una gerarchia di categorie per gli annunci. Un utente, per creare un annuncio, seleziona una categoria e scrive una descrizione dell’oggetto. Quando un oggetto inserito in bacheca è stato venduto, l’utente lo indica come tale e questo non viene più visualizzato nella bacheca pubblica. 
+Un utente del sistema, una volta letto e scelto un annuncio, può decidere di inserire un commento pubblico o di inviare un messaggio privato all’utente che ha inserito l’annuncio. Similmente, un utente può “seguire” uno degli annunci, venendo così informato ogni volta che su questo viene effettuata una modifica (ad esempio, viene inserita una nuova nota). 
+I gestori del servizio possono generare un report indicante in forma aggregata per ciascun utente del sistema quale percentuale di annunci pubblicati sono stati contrassegnati come venduti. 

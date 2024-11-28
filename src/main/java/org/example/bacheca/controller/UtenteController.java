@@ -31,13 +31,13 @@ public class UtenteController implements Controller {
             switch(choice){
                 case 1 -> nuovoAnnuncio();
                 case 2 -> cercaAnnuncio();
-                case 3 -> annunciUtente();
-                case 4 -> Printer.println("Non ancora implementato");
-                case 5 -> Printer.println("Non ancora implementato");
+                case 3 -> annunciUtente(0);
+                case 4 -> Printer.println("Annunci seguiti - Non ancora implementato");
+                case 5 -> Printer.println("Nuove note - Non ancora implementato");
+                case 6 -> annunciUtente(1);
                 default -> throw new RuntimeException("Invalid choice");
             }
         }
-
     }
 
     /*------------------------------------------- CREAZIONE ANNUNCIO -------------------------------------------------*/
@@ -97,11 +97,11 @@ public class UtenteController implements Controller {
 
     }
 
-    public void annunciUtente(){
+    public void annunciUtente(int stato_vendita){
         List<Annuncio> annunci;
 
         try {
-            annunci = new CercaAnnuncioDAO().execute(this.user, "2");
+            annunci = new CercaAnnuncioDAO().execute(this.user, "2", stato_vendita);
             UtenteView.mostraAnnunciUtente(annunci);
 
             AnnunciController annunciController = new AnnunciController(user, annunci);

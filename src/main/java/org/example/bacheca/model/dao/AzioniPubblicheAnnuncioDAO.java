@@ -35,7 +35,8 @@ public class AzioniPubblicheAnnuncioDAO implements GenericDAO{
             switch (azione) {
                 case 1 -> {
                     //info venditore
-
+                    cs = conn.prepareCall(" call info_venditore(?)");
+                    cs.setInt(1, annuncio.getId());
                 }
                 case 2 -> {
                     //segui annuncio

@@ -1,6 +1,7 @@
 package org.example.bacheca.view;
 
 import org.example.bacheca.model.domain.Annuncio;
+import org.example.bacheca.other.CategorieController;
 import org.example.bacheca.other.Printer;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -61,7 +62,11 @@ public class UtenteView {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         switch(choice){
-            case 1 -> Printer.print("Quale categoria vuoi visualizzare? ");
+            case 1 -> {
+                Printer.print("Categorie disponibili: ");
+                CategorieController.stampaCategorie();
+                Printer.print("Quale categoria vuoi visualizzare? ");
+            }
             case 2 -> Printer.print("Username del venditore: ");
             case 3 -> Printer.print("Descrivi l'annuncio che stai cercando: ");
 

@@ -4,6 +4,7 @@ import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.dao.CercaAnnuncioDAO;
 import org.example.bacheca.model.dao.CreaAnnuncioDAO;
 import org.example.bacheca.model.domain.Annuncio;
+import org.example.bacheca.other.CategorieController;
 import org.example.bacheca.other.Printer;
 import org.example.bacheca.view.UtenteView;
 import java.io.BufferedReader;
@@ -67,8 +68,9 @@ public class UtenteController implements Controller {
             }
 
             Printer.println("Seleziona la categoria tra quelle disponibili:");
-            //printCategorie();
-            //System.out.print("Categoria scelta: ");
+            CategorieController.stampaCategorie();
+
+            System.out.print("Categoria scelta: ");
             categoria = reader.readLine();
 
             Annuncio nuovoAnnuncio = new Annuncio(prezzo, descrizione, user, categoria);

@@ -36,7 +36,7 @@ public class CategorieDAO implements GenericDAO  {
         } catch (SQLException e) {
             throw new DAOException(e.getMessage());
         }
-        return null;
+        return result_list;
     }
 
 }

@@ -9,6 +9,7 @@ import org.example.bacheca.view.UtenteView;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class UtenteController implements Controller {
@@ -54,9 +55,16 @@ public class UtenteController implements Controller {
             Printer.print("Descrizione (max. 200 caratteri): ");
             descrizione = reader.readLine();
 
-            Printer.print("Prezzo(€): ");
-            prezzo = Float.valueOf(reader.readLine());
-            //todo: gestisci errore in caso venga inserita una stringa
+
+            while (true){
+                try {
+                    Printer.print("Prezzo(€): ");
+                    prezzo = Float.valueOf(reader.readLine());
+                    break;
+                } catch (NumberFormatException e) {
+                    Printer.errorPrintln("Input invalido: inserire un valore numerico per il prezzo dell'annuncio.");
+                }
+            }
 
             Printer.println("Seleziona la categoria tra quelle disponibili:");
             //printCategorie();

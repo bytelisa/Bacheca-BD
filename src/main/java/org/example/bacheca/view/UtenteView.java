@@ -1,6 +1,7 @@
 package org.example.bacheca.view;
 
 import org.example.bacheca.model.domain.Annuncio;
+import org.example.bacheca.other.CategorieController;
 import org.example.bacheca.other.Printer;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,17 +17,17 @@ public class UtenteView {
 
         Printer.printlnBlu("........................MENU UTENTE........................");
         Printer.println("Cosa vuoi fare?");
-        Printer.println("    1. Crea un annuncio.\n    2. Cerca annunci.\n    3. Visualizza i tuoi annunci attivi.\n    4. Leggi commenti pubblici.\n    5. Leggi nuovi messaggi.\n    6. Annunci contrassegnati come venduti.");
+        Printer.println("    1. Crea un annuncio.\n    2. Cerca annunci.\n    3. Visualizza i tuoi annunci attivi.\n    4. Visualizza gli annunci seguiti.\n    5. Nuove note.\n    6. Annunci contrassegnati come venduti.");
 
 
         Scanner input = new Scanner(System.in);
         int choice;
 
         while (true) {
-            Printer.print("Opzione scelta (1-5): ");
+            Printer.print("Opzione scelta (1-6): ");
             choice = input.nextInt();
 
-            if (choice >= 1 && choice <= 5) {
+            if (choice >= 1 && choice <= 6) {
                 break;
             }
             Printer.print("Input invalido, inserire un numero valido: ");
@@ -61,7 +62,11 @@ public class UtenteView {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         switch(choice){
-            case 1 -> Printer.print("Quale categoria vuoi visualizzare? ");
+            case 1 -> {
+                Printer.print("Categorie disponibili: ");
+                CategorieController.stampaCategorie();
+                Printer.print("Quale categoria vuoi visualizzare? ");
+            }
             case 2 -> Printer.print("Username del venditore: ");
             case 3 -> Printer.print("Descrivi l'annuncio che stai cercando: ");
 
@@ -108,9 +113,5 @@ public class UtenteView {
         Printer.println(messaggio);
     }
 
-    public void printCategorie(){
-        /* da finire
-         */
-    }
 
 }

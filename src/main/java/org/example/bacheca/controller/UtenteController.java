@@ -4,11 +4,13 @@ import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.dao.CercaAnnuncioDAO;
 import org.example.bacheca.model.dao.CreaAnnuncioDAO;
 import org.example.bacheca.model.domain.Annuncio;
+import org.example.bacheca.other.CategorieController;
 import org.example.bacheca.other.Printer;
 import org.example.bacheca.view.UtenteView;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class UtenteController implements Controller {
@@ -31,13 +33,13 @@ public class UtenteController implements Controller {
             switch(choice){
                 case 1 -> nuovoAnnuncio();
                 case 2 -> cercaAnnuncio();
-                case 3 -> annunciUtente();
-                case 4 -> Printer.println("Non ancora implementato");
-                case 5 -> Printer.println("Non ancora implementato");
+                case 3 -> annunciUtente(0);
+                case 4 -> Printer.println("Annunci seguiti - Non ancora implementato");
+                case 5 -> Printer.println("Nuove note - Non ancora implementato");
+                case 6 -> annunciUtente(1);
                 default -> throw new RuntimeException("Invalid choice");
             }
         }
-
     }
 
     /*------------------------------------------- CREAZIONE ANNUNCIO -------------------------------------------------*/
@@ -54,13 +56,21 @@ public class UtenteController implements Controller {
             Printer.print("Descrizione (max. 200 caratteri): ");
             descrizione = reader.readLine();
 
-            Printer.print("Prezzo(€): ");
-            prezzo = Float.valueOf(reader.readLine());
-            //todo: gestisci errore in caso venga inserita una stringa
+
+            while (true){
+                try {
+                    Printer.print("Prezzo(€): ");
+                    prezzo = Float.valueOf(reader.readLine());
+                    break;
+                } catch (NumberFormatException e) {
+                    Printer.errorPrintln("Input invalido: inserire un valore numerico per il prezzo dell'annuncio.");
+                }
+            }
 
             Printer.println("Seleziona la categoria tra quelle disponibili:");
-            //printCategorie();
-            //System.out.print("Categoria scelta: ");
+            CategorieController.stampaCategorie();
+
+            System.out.print("Categoria scelta: ");
             categoria = reader.readLine();
 
             Annuncio nuovoAnnuncio = new Annuncio(prezzo, descrizione, user, categoria);
@@ -81,9 +91,9 @@ public class UtenteController implements Controller {
         List<Annuncio> risultatiRicerca;
 
         try {
-            List<String> filters = UtenteView.cercaAnnuncio();  //contenuto del filtro di ricerca e tipo di filtro (categoria, utente, descrizione)
+        List<String> filters = UtenteView.cercaAnnuncio();  //contenuto del filtro di ricerca e tipo di filtro (categoria, utente, descrizione)
 
-            risultatiRicerca = new CercaAnnuncioDAO().execute(filters.get(0), filters.get(1));
+            risultatiRicerca = new CercaAnnuncioDAO().execute(filters.get(0), filters.get(1), 0);
 
             //UtenteView.stampaMessaggio("Risultati di ricerca con il filtro: " + filters.getFirst());
             UtenteView.mostraAnnunci(risultatiRicerca);
@@ -97,11 +107,11 @@ public class UtenteController implements Controller {
 
     }
 
-    public void annunciUtente(){
+    public void annunciUtente(int stato_vendita){
         List<Annuncio> annunci;
 
         try {
-            annunci = new CercaAnnuncioDAO().execute(this.user, "2");
+            annunci = new CercaAnnuncioDAO().execute(this.user, "2", stato_vendita);
             UtenteView.mostraAnnunciUtente(annunci);
 
             AnnunciController annunciController = new AnnunciController(user, annunci);

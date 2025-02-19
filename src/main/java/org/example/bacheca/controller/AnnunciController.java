@@ -49,10 +49,6 @@ public class AnnunciController implements Controller{
 
                         int action = AnnunciView.showAzioniAnnuncio();
                         gestoreAzioni(id, action);
-
-                        /*al termine dell'azione ricarico gli annunci aggiornati
-                        CercaAnnuncioDAO dao = new CercaAnnuncioDAO();
-                        annunciList = dao.execute(user, "2");*/
                     }
                     case 2 -> {
                         //tornare indietro
@@ -121,7 +117,7 @@ public class AnnunciController implements Controller{
                     annuncio = AnnunciView.modificaAnnuncio(Objects.requireNonNull(Annuncio.findAnnuncioById(this.annunciList, idAnnuncio)));
                     dao.execute(1, annuncio);
                     AnnunciView.stampaMessaggioBluln("La lista aggiornata dei tuoi annunci:");
-                    ricaricaAnnunci();
+                    ricaricaAnnunci(0);
                 }
                 case 2 -> {
                     //elimina
@@ -130,11 +126,11 @@ public class AnnunciController implements Controller{
                         dao.execute(2, annuncio);
                         AnnunciView.stampaMessaggio("L'annuncio è stato eliminato.");
                         AnnunciView.stampaMessaggioBluln("La lista aggiornata dei tuoi annunci:");
-                        ricaricaAnnunci();
+                        ricaricaAnnunci(0);
 
                     } else {
                         AnnunciView.stampaMessaggio("L'annuncio non verrà eliminato.");
-                        AnnunciView.mostraAnnunci(this.annunciList);
+                        ricaricaAnnunci(0);
                         start();
                     }
                 }
@@ -150,7 +146,7 @@ public class AnnunciController implements Controller{
                 }
                 case 5 -> {
                     //ritorna alla lista di annunci
-                    AnnunciView.mostraAnnunci(this.annunciList);
+                    ricaricaAnnunci(1);
                     start();
                 }
 
@@ -163,11 +159,16 @@ public class AnnunciController implements Controller{
 
     }
 
-    public void ricaricaAnnunci() {
+    public void ricaricaAnnunci(int tipo) {
         try {
             //al termine dell'azione ricarico gli annunci aggiornati
             CercaAnnuncioDAO dao = new CercaAnnuncioDAO();
-            annunciList = dao.execute(user, "2");
+            annunciList = dao.execute(user, "2", 0);
+            if (tipo == 1 ) {
+                AnnunciView.stampaMessaggioBluln("...................... I TUOI ANNUNCI ......................");
+            } else if (tipo == 2){
+                AnnunciView.stampaMessaggioBluln("......................Risultati di ricerca......................");
+            }
             AnnunciView.mostraAnnunci(this.annunciList);
 
         } catch (DAOException e){
@@ -190,6 +191,7 @@ public class AnnunciController implements Controller{
                     dao.execute(2, annuncio, user, null);
                     AnnunciView.stampaMessaggioBlu("Ora segui questo annuncio!");
                     AnnunciView.stampaMessaggio(" Controlla la sezione \"Aggiornamenti sugli annunci seguiti\" nel Menu Utente per visualizzare eventuali aggiornamenti a riguardo.");
+
                 }
                 case 3 -> {
                     //mostra commenti pubblici
@@ -204,10 +206,11 @@ public class AnnunciController implements Controller{
                     //invia un messaggio al venditore
                     String messaggio = AnnunciView.inserisciMessaggio("Il tuo messaggio privato per il venditore: ");
                     dao.execute(5, annuncio, user, messaggio);
-                    AnnunciView.stampaMessaggio("Messaggio inviato con successo.");
+                    AnnunciView.stampaMessaggio("Messaggio inviato con successo!");
                 }
                 case 6 -> {
                     //ritorna alla lista di annunci
+                    ricaricaAnnunci(2);
                     return 1;
                 }
 

@@ -18,7 +18,7 @@ public class CercaAnnuncioDAO implements GenericDAO {
 
         String filter = (String) params[0];
         String filterType = (String) params[1]; //se per categoria, utente o descrizione
-
+        int filtro_utente = (Integer) params[2];
         List<Annuncio> resultList = new ArrayList<>();
 
         try {
@@ -30,7 +30,8 @@ public class CercaAnnuncioDAO implements GenericDAO {
                     cs = conn.prepareCall(" call annunci_in_categoria(?)");
                 }
                 case "2" -> { //utente
-                    cs = conn.prepareCall(" call annunci_utente(?)");
+                    cs = conn.prepareCall(" call annunci_utente(?,?)");
+                    cs.setInt(2,filtro_utente);
                 }
                 case "3" -> { //descrizione
                     cs = conn.prepareCall(" call annunci_descrizione(?)");

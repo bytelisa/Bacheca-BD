@@ -111,7 +111,6 @@ public class AnnunciView {
     }
 
     public static void mostraAnnunci(List<Annuncio> listaAnnunci) {
-        Printer.printlnBlu(".................. I TUOI ANNUNCI ..................");
 
         for (Annuncio risultatoCorrente: listaAnnunci) {
             Printer.print("(id." + risultatoCorrente.getId() + ") ");
@@ -120,7 +119,6 @@ public class AnnunciView {
             Printer.println("    - Categoria: " + risultatoCorrente.getCategoria());
             Printer.println("    - Stato: " + risultatoCorrente.statoToString());
             Printer.println("_____________________________________________________________");
-
         }
     }
 

@@ -2,6 +2,8 @@ package org.example.bacheca.model.dao;
 
 import org.example.bacheca.exception.AlreadyFollowingException;
 import org.example.bacheca.exception.DAOException;
+import org.example.bacheca.model.domain.Annuncio;
+import org.example.bacheca.other.Printer;
 
 import javax.xml.transform.Result;
 import java.sql.CallableStatement;
@@ -19,10 +21,23 @@ public class GestoreDAO implements GenericDAO {
             CallableStatement cs = conn.prepareCall("{call report_vendite()}");
             ResultSet rs = cs.executeQuery();
 
+            if(rs.next()) {
+
+                do {
+                    Printer.printlnBlu("REPORT VEDNITE PER UTENTE:");
+                    Printer.println(rs.getString("venditore") + ": " + rs.getFloat("percentuale_vendite") + "%");
+
+                }while (rs.next());
+
+            }
+
+            Printer.printlnBlu(" ------------------------------------------ ");
+
         }
         catch (SQLException e){
             throw new DAOException(e.getMessage());
         }
-            return null;
+
+        return null;
     }
 }

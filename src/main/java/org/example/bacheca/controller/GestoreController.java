@@ -1,5 +1,7 @@
 package org.example.bacheca.controller;
 
+import org.example.bacheca.exception.DAOException;
+import org.example.bacheca.model.dao.GestoreDAO;
 import org.example.bacheca.other.Printer;
 import org.example.bacheca.view.GestoreView;
 import org.example.bacheca.view.UtenteView;
@@ -33,7 +35,16 @@ public class GestoreController implements Controller {
         }
     }
 
-    public void generaReport(int type){ return;}
-    public void modificaCategorie(){ return;}
+    public void generaReport(int type){
+
+        GestoreDAO dao = new GestoreDAO();
+        try {
+            dao.execute();
+        } catch (DAOException e) {
+            Printer.errorPrintln("Errore nella generazione del report.");
+        }
+    }
+
+    public void modificaCategorie(){}
 
 }

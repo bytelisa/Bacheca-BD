@@ -88,9 +88,9 @@ public class Annuncio {
 
     public String statoToString() {
         if (Boolean.TRUE.equals(this.getStato())) {
-            return "Venduto";
-        } else {
             return "Invenduto";
+        } else {
+            return "Venduto";
         }
     }
 

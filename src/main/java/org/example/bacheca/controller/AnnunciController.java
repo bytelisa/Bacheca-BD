@@ -196,7 +196,7 @@ public class AnnunciController implements Controller{
                 case 1 -> {
                     //info venditore
                     UtenteDAO utenteDAO = new UtenteDAO();
-                    Utente info = utenteDAO.execute(1, annuncio.getVenditore());
+                    Utente info = utenteDAO.execute(annuncio.getVenditore());
                     InfoUtenteView.stampaInfo(info);
                 }
                 case 2 -> {

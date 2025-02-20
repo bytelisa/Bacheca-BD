@@ -3,7 +3,6 @@ package org.example.bacheca.model.dao;
 import org.example.bacheca.exception.AlreadyFollowingException;
 import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.domain.Annuncio;
-import org.example.bacheca.model.domain.Utente;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;

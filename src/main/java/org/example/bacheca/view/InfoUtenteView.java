@@ -7,11 +7,13 @@ public class InfoUtenteView {
 
     public static void stampaInfo(Utente user){
         Printer.println(" ");
-        Printer.print("     Username:");
-        Printer.printlnVerde(user.getUsername());
-        Printer.println("     Nome e Cognome:" + user.getNome() + user.getCognome());
-        Printer.println("     Indirizzo di Residenza:" + user.getResidenza());
-        Printer.println("     Indirizzo di Fatturazione:" + user.getFatturazione());
+        Printer.print("     Username: ");
+        Printer.printlnBlu(user.getUsername());
+        Printer.println("     Nome e Cognome: " + user.getNome() + " " + user.getCognome());
+        Printer.println("     Indirizzo di Residenza: " + user.getResidenza());
+        if (user.getFatturazione() != null) {
+            Printer.println("     Indirizzo di Fatturazione: " + user.getFatturazione());
+        }
         Printer.println(" ");
     }
 

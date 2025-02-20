@@ -203,7 +203,7 @@ public class AnnunciController implements Controller{
                     //segui annuncio
                     dao.execute(2, annuncio, user, null);
                     AnnunciView.stampaMessaggioBlu("Ora segui questo annuncio!");
-                    AnnunciView.stampaMessaggio(" Controlla la sezione \"Aggiornamenti sugli annunci seguiti\" nel Menu Credenziali per visualizzare eventuali aggiornamenti a riguardo.");
+                    AnnunciView.stampaMessaggio(" Controlla la sezione \"Aggiornamenti sugli annunci seguiti\" nel Menu Utente per visualizzare eventuali aggiornamenti a riguardo.");
 
                 }
                 case 3 -> {
@@ -236,7 +236,7 @@ public class AnnunciController implements Controller{
 
         } catch(AlreadyFollowingException e){
             Printer.errorPrint("Attenzione! ");
-            UtenteView.stampaMessaggio("Stai già seguendo questo annuncio. Controlla eventuali aggiornamenti nel Menu Credenziali.");
+            UtenteView.stampaMessaggio("Stai già seguendo questo annuncio. Controlla eventuali aggiornamenti nel Menu Utente.");
         } catch (DAOException e) {
             throw new RuntimeException(e.getMessage());
         }

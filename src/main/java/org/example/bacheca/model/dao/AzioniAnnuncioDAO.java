@@ -48,28 +48,35 @@ public class AzioniAnnuncioDAO implements GenericDAO {
                     cs.setInt(1,annuncio.getId());
                     cs.setInt(2,1); //pubblico->tipo=1
 
+                    ResultSet rs = cs.executeQuery();
+                    //per i case 3 e 4 devo gestire la lista dei messaggi/commenti nel result set per restituirla al controller
+
+                    if (rs.next()) {
+                        do {
+                            resultList.add(new Messaggio(rs.getString("mittente"), rs.getString("destinatario"),
+                                    rs.getString("contenuto"), TipoMessaggio.fromBool(rs.getBoolean("tipo")),
+                                    rs.getInt("annuncio"), rs.getInt("id_messaggio"), rs.getTimestamp("ora")));
+                        } while (rs.next());
+                    }
+
                 }
                 case 4 -> {
                     //messaggi privati
                     cs = conn.prepareCall("call messaggi_annuncio(?,?)");
                     cs.setInt(1,annuncio.getId());
                     cs.setInt(2,0); //privato->tipo=1
+
+                    ResultSet rs = cs.executeQuery();
+
+                    if (rs.next()) {
+                        do {
+                            resultList.add(new Messaggio(rs.getString("mittente"), rs.getString("destinatario"),
+                                    rs.getString("contenuto"), TipoMessaggio.fromBool(rs.getBoolean("tipo")),
+                                    rs.getInt("annuncio"), rs.getInt("id_messaggio"), rs.getTimestamp("ora")));
+                        } while (rs.next());
+                    }
                 }
                 default -> throw new DAOException("AzioniAnnuncioDAO error: azione invalida.");
-
-            }
-
-            ResultSet rs = cs.executeQuery();
-
-            //per i case 3 e 4 devo gestire la lista dei messaggi/commenti nel result set per restituirla al controller
-
-            if (rs.next()) {
-                do {
-                    resultList.add(new Messaggio(rs.getString("mittente"), rs.getString("destinatario"),
-                            rs.getString("contenuto"), TipoMessaggio.fromBool(rs.getBoolean("tipo")),
-                            rs.getInt("annuncio"), rs.getInt("id_messaggio"), rs.getTimestamp("ora")));
-
-                } while (rs.next());
             }
 
         } catch (SQLException e) {

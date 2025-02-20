@@ -63,7 +63,7 @@ public class UtenteView {
 
         switch(choice){
             case 1 -> {
-                Printer.print("Categorie disponibili: ");
+                Printer.println(" ");
                 CategorieController.stampaCategorie();
                 Printer.print("Quale categoria vuoi visualizzare? ");
             }

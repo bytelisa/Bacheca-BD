@@ -5,9 +5,12 @@ import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.dao.AzioniAnnuncioDAO;
 import org.example.bacheca.model.dao.AzioniPubblicheAnnuncioDAO;
 import org.example.bacheca.model.dao.CercaAnnuncioDAO;
+import org.example.bacheca.model.dao.UtenteDAO;
 import org.example.bacheca.model.domain.Annuncio;
+import org.example.bacheca.model.domain.Utente;
 import org.example.bacheca.other.Printer;
 import org.example.bacheca.view.AnnunciView;
+import org.example.bacheca.view.InfoUtenteView;
 import org.example.bacheca.view.UtenteView;
 
 import java.io.IOException;
@@ -192,7 +195,9 @@ public class AnnunciController implements Controller{
             switch (azione) {
                 case 1 -> {
                     //info venditore
-                    dao.execute(1, annuncio, user, null);
+                    UtenteDAO utenteDAO = new UtenteDAO();
+                    Utente info = utenteDAO.execute(1, annuncio.getVenditore());
+                    InfoUtenteView.stampaInfo(info);
                 }
                 case 2 -> {
                     //segui annuncio
@@ -203,6 +208,10 @@ public class AnnunciController implements Controller{
                 }
                 case 3 -> {
                     //mostra commenti pubblici
+                    annuncio = Objects.requireNonNull(Annuncio.findAnnuncioById(annunciList, annuncio.getId()));
+
+                    MessaggioController messaggioController = new MessaggioController(dao.execute(3, annuncio, null, null));
+                    messaggioController.mostraMessaggi();
                 }
                 case 4 -> {
                     //commenta

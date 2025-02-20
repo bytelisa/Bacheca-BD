@@ -37,6 +37,16 @@ public class MessaggioController implements Controller{
         }
     }
 
+    public void mostraMessaggi() {
+        if (currentList.isEmpty()) {
+            Printer.println("Non sono presenti messaggi relativi a questo annuncio.");
+            Printer.println("");
+
+        } else {
+            MessaggioView.stampaMessaggi(currentList);
+        }
+    }
+
     public void rispondi(Messaggio messaggio){
 
     }

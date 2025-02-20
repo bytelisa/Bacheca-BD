@@ -8,16 +8,15 @@ public enum TipoMessaggio {
 
     private final int id;
 
-    private TipoMessaggio(int id){ this.id = id;}
+    TipoMessaggio(int id){ this.id = id;}
 
     public int getId() { return id; }
 
-    public static TipoMessaggio fromInt (int id) {
-        for (TipoMessaggio type : values()) {
-            if (type.getId() == id) {
-                return type;
-            }
+    public static TipoMessaggio fromBool (boolean id) {
+        if (id) {
+            return COMMENTO_PUBBLICO;
+        } else {
+            return MESSAGGIO_PRIVATO;
         }
-        return null;
     }
 }

@@ -114,7 +114,7 @@ public class AnnunciController implements Controller{
             switch (azione) {
                 case 1 -> {
                     //modifica
-                    annuncio = AnnunciView.modificaAnnuncio(Objects.requireNonNull(Annuncio.findAnnuncioById(this.annunciList, idAnnuncio)));
+                    annuncio = AnnunciView.modificaAnnuncio(Objects.requireNonNull(Annuncio.findAnnuncioById(annunciList, idAnnuncio)));
                     dao.execute(1, annuncio);
                     AnnunciView.stampaMessaggioBluln("La lista aggiornata dei tuoi annunci:");
                     ricaricaAnnunci(0);
@@ -136,13 +136,21 @@ public class AnnunciController implements Controller{
                 }
                 case 3 -> {
                     //commenti pubblici
-                    dao.execute(3);
-                    Printer.println("Non ancora implementato.");
+                    annuncio = Objects.requireNonNull(Annuncio.findAnnuncioById(annunciList, idAnnuncio));
+
+                    //il dao restituisce la lista di commenti e io la passo subito al gestore dei commenti
+                    MessaggioController next = new MessaggioController(dao.execute(3, annuncio));
+                    next.start();
+                    start();
                 }
                 case 4 -> {
                     //messaggi privati
-                    dao.execute(4);
-                    Printer.println("Non ancora implementato.");
+                    annuncio = Objects.requireNonNull(Annuncio.findAnnuncioById(annunciList, idAnnuncio));
+
+                    //il dao restituisce la lista di messaggi e io la passo subito al gestore dei commenti
+                    MessaggioController next = new MessaggioController(dao.execute(4, annuncio));
+                    next.start();
+                    start();
                 }
                 case 5 -> {
                     //ritorna alla lista di annunci

@@ -1,15 +1,15 @@
 package org.example.bacheca.model.dao;
 
 import org.example.bacheca.exception.DAOException;
-import org.example.bacheca.model.domain.Utente;
+import org.example.bacheca.model.domain.Credenziali;
 import org.example.bacheca.model.domain.Ruolo;
 
 import java.sql.*;
 
-public class LoginDAO implements GenericDAO<Utente> {
+public class LoginDAO implements GenericDAO<Credenziali> {
 
     @Override
-    public Utente execute(Object... params) throws DAOException {
+    public Credenziali execute(Object... params) throws DAOException {
 
         String username = (String) params[0];
         String password = (String) params[1];
@@ -33,6 +33,6 @@ public class LoginDAO implements GenericDAO<Utente> {
             throw new DAOException("Login error: " + e.getMessage());
         }
 
-        return new Utente(username, password, Ruolo.fromInt(role));
+        return new Credenziali(username, password, Ruolo.fromInt(role));
     }
 }

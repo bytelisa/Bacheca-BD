@@ -1,13 +1,13 @@
 package org.example.bacheca.model.domain;
 
 
-public class Utente {
+public class Credenziali {
 
     private final String username;
     private final String password;
     private final Ruolo ruolo;
 
-    public Utente(String username, String password, Ruolo ruolo) {
+    public Credenziali(String username, String password, Ruolo ruolo) {
         this.username = username;
         this.password = password;
         this.ruolo = ruolo;

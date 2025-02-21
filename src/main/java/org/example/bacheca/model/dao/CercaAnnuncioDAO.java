@@ -16,9 +16,9 @@ public class CercaAnnuncioDAO implements GenericDAO {
     public List<Annuncio> execute(Object... params) throws DAOException {
      /* */
 
-        String filter = (String) params[0];
-        String filterType = (String) params[1]; //se per categoria, utente o descrizione
-        int filtro_utente = (Integer) params[2];
+        String filter = (String) params[0]; //valore del filtro
+        String filterType = (String) params[1]; //tipo di filtro: categoria, utente o descrizione
+        int statoAnnunci = (Integer) params[2]; //per la ricerca tramite utente, indica se cerchiamo gli annunci attivi o quelli venduti
         List<Annuncio> resultList = new ArrayList<>();
 
         try {
@@ -31,10 +31,15 @@ public class CercaAnnuncioDAO implements GenericDAO {
                 }
                 case "2" -> { //utente
                     cs = conn.prepareCall(" call annunci_utente(?,?)");
-                    cs.setInt(2,filtro_utente);
+                    cs.setInt(2,statoAnnunci);
                 }
                 case "3" -> { //descrizione
                     cs = conn.prepareCall(" call annunci_descrizione(?)");
+                }
+                case "4" -> {
+                    //annunci seguiti dall'utente
+                    cs = conn.prepareCall("call annunci_seguiti(?)");
+
                 }
                 default -> System.out.println("ERRORE FILTRO RICERCA DAO");
             }

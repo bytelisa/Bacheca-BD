@@ -14,22 +14,24 @@ public class UtenteDAO implements GenericDAO {
     public Utente execute(Object...params) throws DAOException {
 
         String username = (String) params[0];
-        Utente utente;
+        int action = (int) params[1];
+        Utente utente = null;
         try{
             Connection conn = ConnectionFactory.getConnection();
             CallableStatement cs = conn.prepareCall( "{call info_utente(?)}");
-            cs.setString(0, username);
+            cs.setString(1, username);
 
             ResultSet rs = cs. executeQuery();
 
-            utente = new Utente(rs.getString("username"), rs.getString("nome"),
-                    rs.getString("cognome"), rs.getString("ind_residenza"),
-                    rs.getString("ind_fatturazione"));
+            if (rs.next()){
+                utente = new Utente(rs.getString("username"), rs.getString("nome"),
+                        rs.getString("cognome"), rs.getString("ind_residenza"),
+                        rs.getString("ind_fatturazione"));
+            }
 
         }catch(SQLException e) {
-            throw new DAOException("Login error: " + e.getMessage());
+            throw new DAOException("UtenteDAO error: " + e.getMessage());
         }
-
         return utente;
     }
 

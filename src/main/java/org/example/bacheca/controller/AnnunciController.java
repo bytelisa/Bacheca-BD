@@ -5,9 +5,12 @@ import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.dao.AzioniAnnuncioDAO;
 import org.example.bacheca.model.dao.AzioniPubblicheAnnuncioDAO;
 import org.example.bacheca.model.dao.CercaAnnuncioDAO;
+import org.example.bacheca.model.dao.UtenteDAO;
 import org.example.bacheca.model.domain.Annuncio;
+import org.example.bacheca.model.domain.Utente;
 import org.example.bacheca.other.Printer;
 import org.example.bacheca.view.AnnunciView;
+import org.example.bacheca.view.InfoUtenteView;
 import org.example.bacheca.view.UtenteView;
 
 import java.io.IOException;
@@ -107,6 +110,8 @@ public class AnnunciController implements Controller{
 
     public void gestoreAzioni(int idAnnuncio, int azione) {
 
+        //gestore delle azioni disponibili al proprietario dell'annuncio
+
         Annuncio annuncio;
         AzioniAnnuncioDAO dao = new AzioniAnnuncioDAO();
 
@@ -114,7 +119,7 @@ public class AnnunciController implements Controller{
             switch (azione) {
                 case 1 -> {
                     //modifica
-                    annuncio = AnnunciView.modificaAnnuncio(Objects.requireNonNull(Annuncio.findAnnuncioById(this.annunciList, idAnnuncio)));
+                    annuncio = AnnunciView.modificaAnnuncio(Objects.requireNonNull(Annuncio.findAnnuncioById(annunciList, idAnnuncio)));
                     dao.execute(1, annuncio);
                     AnnunciView.stampaMessaggioBluln("La lista aggiornata dei tuoi annunci:");
                     ricaricaAnnunci(0);
@@ -136,13 +141,21 @@ public class AnnunciController implements Controller{
                 }
                 case 3 -> {
                     //commenti pubblici
-                    dao.execute(3);
-                    Printer.println("Non ancora implementato.");
+                    annuncio = Objects.requireNonNull(Annuncio.findAnnuncioById(annunciList, idAnnuncio));
+
+                    //il dao restituisce la lista di commenti e io la passo subito al gestore dei commenti
+                    MessaggioController next = new MessaggioController(dao.execute(3, annuncio));
+                    next.start();
+                    start();
                 }
                 case 4 -> {
                     //messaggi privati
-                    dao.execute(4);
-                    Printer.println("Non ancora implementato.");
+                    annuncio = Objects.requireNonNull(Annuncio.findAnnuncioById(annunciList, idAnnuncio));
+
+                    //il dao restituisce la lista di messaggi e io la passo subito al gestore dei commenti
+                    MessaggioController next = new MessaggioController(dao.execute(4, annuncio));
+                    next.start();
+                    start();
                 }
                 case 5 -> {
                     //ritorna alla lista di annunci
@@ -159,24 +172,9 @@ public class AnnunciController implements Controller{
 
     }
 
-    public void ricaricaAnnunci(int tipo) {
-        try {
-            //al termine dell'azione ricarico gli annunci aggiornati
-            CercaAnnuncioDAO dao = new CercaAnnuncioDAO();
-            annunciList = dao.execute(user, "2", 0);
-            if (tipo == 1 ) {
-                AnnunciView.stampaMessaggioBluln("...................... I TUOI ANNUNCI ......................");
-            } else if (tipo == 2){
-                AnnunciView.stampaMessaggioBluln("......................Risultati di ricerca......................");
-            }
-            AnnunciView.mostraAnnunci(this.annunciList);
-
-        } catch (DAOException e){
-            throw new RuntimeException(e.getMessage());
-        }
-    }
-
     public int gestoreAzioniPubbliche(Annuncio annuncio, int azione) {
+
+        //gestore delle azioni disponibili a chi legge un annuncio (non suo)
 
         AzioniPubblicheAnnuncioDAO dao = new AzioniPubblicheAnnuncioDAO();
 
@@ -184,7 +182,9 @@ public class AnnunciController implements Controller{
             switch (azione) {
                 case 1 -> {
                     //info venditore
-                    dao.execute(1, annuncio, user, null);
+                    UtenteDAO utenteDAO = new UtenteDAO();
+                    Utente info = utenteDAO.execute(annuncio.getVenditore());
+                    InfoUtenteView.stampaInfo(info);
                 }
                 case 2 -> {
                     //segui annuncio
@@ -195,6 +195,10 @@ public class AnnunciController implements Controller{
                 }
                 case 3 -> {
                     //mostra commenti pubblici
+                    annuncio = Objects.requireNonNull(Annuncio.findAnnuncioById(annunciList, annuncio.getId()));
+
+                    MessaggioController messaggioController = new MessaggioController(dao.execute(3, annuncio, null, null));
+                    messaggioController.mostraMessaggi();
                 }
                 case 4 -> {
                     //commenta
@@ -226,5 +230,24 @@ public class AnnunciController implements Controller{
 
         return 0;
     }
+
+    public void ricaricaAnnunci(int tipo) {
+        try {
+            //al termine dell'azione ricarico gli annunci aggiornati
+            CercaAnnuncioDAO dao = new CercaAnnuncioDAO();
+            annunciList = dao.execute(user, "2", 0);
+            if (tipo == 1 ) {
+                AnnunciView.stampaMessaggioBluln("...................... I TUOI ANNUNCI ......................");
+            } else if (tipo == 2){
+                AnnunciView.stampaMessaggioBluln("......................Risultati di ricerca......................");
+            }
+            AnnunciView.mostraAnnunci(this.annunciList);
+
+        } catch (DAOException e){
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+
 
 }

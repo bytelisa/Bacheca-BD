@@ -27,7 +27,7 @@ public class UtenteView {
             Printer.print("Opzione scelta (1-6): ");
             choice = input.nextInt();
 
-            if (choice >= 1 && choice <= 6) {
+            if (choice >= 1 && choice <= 7) {
                 break;
             }
             Printer.print("Input invalido, inserire un numero valido: ");

@@ -171,16 +171,17 @@ public class UtenteController implements Controller {
         List<Messaggio> messaggi = new ArrayList<>();
 
         try {
-            annunci = dao.execute(user, 5, 0);
+            annunci = dao.execute(user, "5", 0);
             Printer.printlnBlu("Ecco gli annunci con cui hai interagito: ");
             AnnunciView.mostraAnnunci(annunci);
 
-            int choice = AnnunciView.selezionaRisultato(annunci.size());
+            int choice = AnnunciView.selezionaRisultato(100);
 
             ChatController next = new ChatController(annunci.get(choice-1));
             next.start();
 
         } catch (DAOException|IOException e) {
+            e.printStackTrace();
             Printer.errorPrintln("Errore nel caricamento degli annunci con cui hai interagito.");
         }
 

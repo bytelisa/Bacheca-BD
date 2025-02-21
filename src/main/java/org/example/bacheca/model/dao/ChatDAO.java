@@ -32,7 +32,6 @@ public class ChatDAO implements GenericDAO {
                     resultList.add(new Messaggio(rs.getString("mittente"), rs.getString("destinatario"), rs.getString("contenuto"),
                             TipoMessaggio.MESSAGGIO_PRIVATO, rs.getInt("annuncio"), rs.getInt("id_messaggio"), rs.getTimestamp("data_ora")));
 
-
                 } while (rs.next());
             }
 

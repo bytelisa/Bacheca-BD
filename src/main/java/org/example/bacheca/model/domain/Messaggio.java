@@ -17,15 +17,25 @@ public class Messaggio {
     private int id;
     private Timestamp dataOra;
 
-    public Messaggio(String mitt, String dest, String cont, TipoMessaggio tipo, int idA, int idN, Timestamp time) {
+
+    public Messaggio(String mitt, String dest, String cont, TipoMessaggio tipo, int idA) {
         this.mittente=mitt;
         this.destinatario=dest;
         this.contenuto=cont;
         this.tipoMessaggio=tipo;
         this.idAnnuncioRelativo=idA;
-        this.id =idN;
+    }
+
+    public Messaggio(String mitt, String dest, String cont, TipoMessaggio tipo, int idA, int id, Timestamp time) {
+        this.mittente=mitt;
+        this.destinatario=dest;
+        this.contenuto=cont;
+        this.tipoMessaggio=tipo;
+        this.idAnnuncioRelativo=idA;
+        this.id =id;
         this.dataOra=time;
     }
+
 
     public String getMittente() {
         return mittente;

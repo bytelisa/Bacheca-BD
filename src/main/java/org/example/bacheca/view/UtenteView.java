@@ -17,7 +17,7 @@ public class UtenteView {
 
         Printer.printlnBlu("........................MENU UTENTE........................");
         Printer.println("Cosa vuoi fare?");
-        Printer.println("    1. Crea un annuncio.\n    2. Cerca annunci.\n    3. Visualizza i tuoi annunci attivi.\n    4. Visualizza gli annunci seguiti.\n    5. Nuove note.\n    6. Annunci contrassegnati come venduti.");
+        Printer.println("    1. Crea un annuncio.\n    2. Cerca annunci.\n    3. Visualizza i tuoi annunci attivi.\n    4. Visualizza gli annunci seguiti.\n    5. Nuove notifiche.\n    6. Annunci contrassegnati come venduti.\n    7. Messaggi privati.");
 
 
         Scanner input = new Scanner(System.in);

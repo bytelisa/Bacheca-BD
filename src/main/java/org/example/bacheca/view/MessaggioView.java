@@ -3,7 +3,9 @@ package org.example.bacheca.view;
 import org.example.bacheca.model.domain.Messaggio;
 import org.example.bacheca.other.Printer;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Scanner;
 
@@ -15,7 +17,7 @@ public class MessaggioView {
 
         Printer.printlnBlu("........................ opzioni ........................");
         Printer.println("Cosa vuoi fare?");
-        Printer.println("    1. Invia una risposta.\n    2. Mostra profilo utente.\n    3. Elimina messaggio.\n    0. Torna indietro");
+        Printer.println("    1. Invia una risposta.\n    2. Mostra profilo utente.\n    0. Torna indietro");
 
 
         Scanner input = new Scanner(System.in);
@@ -47,6 +49,22 @@ public class MessaggioView {
         }
     }
 
+    public static String inserisciMessaggio(String prompt) {
+
+        String contenuto;
+        try {
+            stampaMessaggioBlu(prompt);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            contenuto = reader.readLine();
+            return contenuto;
+
+        } catch (IOException e){
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+    public static void stampaMessaggio(String messaggio){
+        Printer.println(messaggio);
+    }
     public static int selezionaRisultato(int max) throws IOException {
         Scanner input = new Scanner(System.in);
         int index;
@@ -63,6 +81,8 @@ public class MessaggioView {
         Printer.println(" ");
         return index;
     }
-
+    public static void stampaMessaggioBlu(String messaggio){
+        Printer.printBlu(messaggio);
+    }
 
 }

@@ -30,15 +30,28 @@ public class MessaggioController implements Controller{
 
             switch (choice) {
                 case 1-> {
+                    //invia risposta
+                    Messaggio attuale = currentList.get(selezione-1);
+
+                    String contenuto = MessaggioView.inserisciMessaggio("La tua risposta: ");
+                    MessaggioView.stampaMessaggio("Messaggio inviato con successo!");
+
+                    Messaggio risposta = new Messaggio(attuale.getDestinatario(), attuale.getMittente(),
+                                        contenuto, attuale.getTipoMessaggio(), attuale.getIdAnnuncioRelativo());
                     MessaggioDAO dao = new MessaggioDAO();
+
                     try {
-                        dao.execute(1, currentList.get(selezione));
+                        dao.execute(1, risposta);
                     } catch (DAOException e) {
                         Printer.errorPrintln("Errore nell'invio della risposta");
                     }
                 }
                 case 2-> System.out.println("info");
                 case 3-> elimina(currentList.get(selezione));
+                case 0 ->  {
+                    return;
+                }
+
             }
 
         } catch (IOException e) {

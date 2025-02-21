@@ -156,6 +156,7 @@ public class UtenteController implements Controller {
             NotificaView.mostraNotifiche(notifiche);
 
         } catch (DAOException e) {
+            e.printStackTrace();
             Printer.errorPrintln("Errore nel caricamento delle notifiche.");
         }
     }

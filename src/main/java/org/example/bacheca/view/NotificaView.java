@@ -35,7 +35,7 @@ public class NotificaView {
         }
     }
 
-    public void stampaInfoAnnuncio(Annuncio ann) {
+    public static void stampaInfoAnnuncio(Annuncio ann) {
         Printer.println("       " + ann.getDescrizione());
         Printer.println("        - Prezzo: " + ann.getPrezzo() + "€");
         Printer.println("        - Categoria: " + ann.getCategoria());

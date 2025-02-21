@@ -42,8 +42,6 @@ public class UtenteView {
         Printer.println("Cosa vuoi fare?");
         Printer.println("    1. Cerca per categoria.\n    2. Cerca per utente.\n    3. Cerca tramite descrizione.");
 
-        //todo inserire i più generici filtri di ricerca?
-
         List<String> returnList = new ArrayList<>();
 
         Scanner input = new Scanner(System.in);

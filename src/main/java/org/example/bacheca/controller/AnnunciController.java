@@ -110,6 +110,8 @@ public class AnnunciController implements Controller{
 
     public void gestoreAzioni(int idAnnuncio, int azione) {
 
+        //gestore delle azioni disponibili al proprietario dell'annuncio
+
         Annuncio annuncio;
         AzioniAnnuncioDAO dao = new AzioniAnnuncioDAO();
 
@@ -170,24 +172,9 @@ public class AnnunciController implements Controller{
 
     }
 
-    public void ricaricaAnnunci(int tipo) {
-        try {
-            //al termine dell'azione ricarico gli annunci aggiornati
-            CercaAnnuncioDAO dao = new CercaAnnuncioDAO();
-            annunciList = dao.execute(user, "2", 0);
-            if (tipo == 1 ) {
-                AnnunciView.stampaMessaggioBluln("...................... I TUOI ANNUNCI ......................");
-            } else if (tipo == 2){
-                AnnunciView.stampaMessaggioBluln("......................Risultati di ricerca......................");
-            }
-            AnnunciView.mostraAnnunci(this.annunciList);
-
-        } catch (DAOException e){
-            throw new RuntimeException(e.getMessage());
-        }
-    }
-
     public int gestoreAzioniPubbliche(Annuncio annuncio, int azione) {
+
+        //gestore delle azioni disponibili a chi legge un annuncio (non suo)
 
         AzioniPubblicheAnnuncioDAO dao = new AzioniPubblicheAnnuncioDAO();
 
@@ -243,5 +230,24 @@ public class AnnunciController implements Controller{
 
         return 0;
     }
+
+    public void ricaricaAnnunci(int tipo) {
+        try {
+            //al termine dell'azione ricarico gli annunci aggiornati
+            CercaAnnuncioDAO dao = new CercaAnnuncioDAO();
+            annunciList = dao.execute(user, "2", 0);
+            if (tipo == 1 ) {
+                AnnunciView.stampaMessaggioBluln("...................... I TUOI ANNUNCI ......................");
+            } else if (tipo == 2){
+                AnnunciView.stampaMessaggioBluln("......................Risultati di ricerca......................");
+            }
+            AnnunciView.mostraAnnunci(this.annunciList);
+
+        } catch (DAOException e){
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+
 
 }

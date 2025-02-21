@@ -6,6 +6,7 @@ import org.example.bacheca.model.dao.CreaAnnuncioDAO;
 import org.example.bacheca.model.domain.Annuncio;
 import org.example.bacheca.other.CategorieController;
 import org.example.bacheca.other.Printer;
+import org.example.bacheca.view.AnnunciView;
 import org.example.bacheca.view.UtenteView;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,7 +35,7 @@ public class UtenteController implements Controller {
                 case 1 -> nuovoAnnuncio();
                 case 2 -> cercaAnnuncio();
                 case 3 -> annunciUtente(0);
-                case 4 -> Printer.println("Annunci seguiti - Non ancora implementato");
+                case 4 -> annunciSeguiti();
                 case 5 -> Printer.println("Nuove note - Non ancora implementato");
                 case 6 -> annunciUtente(1);
                 default -> throw new RuntimeException("Invalid choice");
@@ -95,7 +96,6 @@ public class UtenteController implements Controller {
 
             risultatiRicerca = new CercaAnnuncioDAO().execute(filters.get(0), filters.get(1), 0);
 
-            //UtenteView.stampaMessaggio("Risultati di ricerca con il filtro: " + filters.getFirst());
             UtenteView.mostraAnnunci(risultatiRicerca);
 
             AnnunciController annunciController = new AnnunciController(user, risultatiRicerca);
@@ -122,6 +122,24 @@ public class UtenteController implements Controller {
         }
     }
 
+    public void annunciSeguiti(){
+
+        List<Annuncio> seguiti;
+        CercaAnnuncioDAO dao = new CercaAnnuncioDAO();
+        try {
+            seguiti = dao.execute(user, "4", 0);
+
+            Printer.println("");
+            Printer.printlnBlu("Annunci che stai seguendo:");
+            AnnunciView.mostraAnnunci(seguiti);
+            AnnunciController next = new AnnunciController(user, seguiti);
+            next.annunciRicerca();
+
+        } catch (DAOException e){
+            e.printStackTrace();
+            Printer.errorPrint("Errore nel caricamento degli annunci seguiti.");
+        }
+    }
 
 }
 

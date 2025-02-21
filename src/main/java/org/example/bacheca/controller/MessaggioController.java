@@ -1,5 +1,7 @@
 package org.example.bacheca.controller;
 
+import org.example.bacheca.exception.DAOException;
+import org.example.bacheca.model.dao.MessaggioDAO;
 import org.example.bacheca.model.domain.Messaggio;
 import org.example.bacheca.other.Printer;
 import org.example.bacheca.view.MessaggioView;
@@ -27,7 +29,14 @@ public class MessaggioController implements Controller{
             int choice = MessaggioView.showMenu();
 
             switch (choice) {
-                case 1-> rispondi(currentList.get(selezione));
+                case 1-> {
+                    MessaggioDAO dao = new MessaggioDAO();
+                    try {
+                        dao.execute(1, currentList.get(selezione));
+                    } catch (DAOException e) {
+                        Printer.errorPrintln("Errore nell'invio della risposta");
+                    }
+                }
                 case 2-> System.out.println("info");
                 case 3-> elimina(currentList.get(selezione));
             }
@@ -45,10 +54,6 @@ public class MessaggioController implements Controller{
         } else {
             MessaggioView.stampaMessaggi(currentList);
         }
-    }
-
-    public void rispondi(Messaggio messaggio){
-
     }
 
     public void elimina(Messaggio messaggio){

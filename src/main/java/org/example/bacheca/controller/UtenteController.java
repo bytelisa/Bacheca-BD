@@ -5,10 +5,12 @@ import org.example.bacheca.model.dao.CercaAnnuncioDAO;
 import org.example.bacheca.model.dao.CreaAnnuncioDAO;
 import org.example.bacheca.model.dao.NotificheDAO;
 import org.example.bacheca.model.domain.Annuncio;
+import org.example.bacheca.model.domain.Messaggio;
 import org.example.bacheca.model.domain.Notifica;
 import org.example.bacheca.other.CategorieController;
 import org.example.bacheca.other.Printer;
 import org.example.bacheca.view.AnnunciView;
+import org.example.bacheca.view.MessaggioView;
 import org.example.bacheca.view.NotificaView;
 import org.example.bacheca.view.UtenteView;
 import java.io.BufferedReader;
@@ -42,6 +44,7 @@ public class UtenteController implements Controller {
                 case 4 -> annunciSeguiti();
                 case 5 -> notificheAnnunci();
                 case 6 -> annunciUtente(1);
+                case 7 -> messaggiPrivati();
                 default -> throw new RuntimeException("Invalid choice");
             }
         }
@@ -161,6 +164,27 @@ public class UtenteController implements Controller {
         }
     }
 
+    public void messaggiPrivati() {
+        // in pratica mostro tutte le chat private, una per ogni annuncio che ha al momento messaggi privati
+        CercaAnnuncioDAO dao = new CercaAnnuncioDAO();
+        List<Annuncio> annunci = new ArrayList<>();
+        List<Messaggio> messaggi = new ArrayList<>();
+
+        try {
+            annunci = dao.execute(user, 5, 0);
+            Printer.printlnBlu("Ecco gli annunci con cui hai interagito: ");
+            AnnunciView.mostraAnnunci(annunci);
+
+            int choice = AnnunciView.selezionaRisultato(annunci.size());
+
+            ChatController next = new ChatController(annunci.get(choice-1));
+            next.start();
+
+        } catch (DAOException|IOException e) {
+            Printer.errorPrintln("Errore nel caricamento degli annunci con cui hai interagito.");
+        }
+
+    }
 }
 
 //<3 ;)))))

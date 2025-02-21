@@ -41,6 +41,11 @@ public class CercaAnnuncioDAO implements GenericDAO {
                     cs = conn.prepareCall("call annunci_seguiti(?)");
 
                 }
+                case "5" -> {
+                    //annunci con cui l'utente ha interagito
+                    cs = conn.prepareCall("call annunci_con_interazioni(?)");
+                    cs.setString(1, filter);
+                }
                 default -> System.out.println("ERRORE FILTRO RICERCA DAO");
             }
 
@@ -50,11 +55,9 @@ public class CercaAnnuncioDAO implements GenericDAO {
             if(rs.next()) {
 
                 do {
-
                     Annuncio annuncioCorrente = new Annuncio(rs.getInt("id_annuncio"), rs.getFloat("prezzo"),
                             rs.getString("descrizione"), rs.getString("venditore"),
                             rs.getString("categoria"));
-
                     resultList.add(annuncioCorrente);
 
                 }while (rs.next());

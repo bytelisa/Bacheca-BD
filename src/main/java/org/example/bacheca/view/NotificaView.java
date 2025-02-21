@@ -20,11 +20,11 @@ public class NotificaView {
 
                 }
                 case 1 -> {
-                    Printer.printlnBlu("  > Annuncio modificato:");
+                    Printer.printlnGiallo("  > Annuncio modificato:");
                     stampaInfoAnnuncio(notifica.getAnnuncio());
                 }
                 case 2 -> {
-                    Printer.errorPrintln("  > Annuncio venduto:");
+                    Printer.printlnViola("  > Annuncio venduto:");
                     stampaInfoAnnuncio(notifica.getAnnuncio());
 
                 }

@@ -2,6 +2,7 @@ package org.example.bacheca.model.dao;
 
 import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.domain.Messaggio;
+import org.example.bacheca.model.domain.TipoMessaggio;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -26,9 +27,10 @@ public class ChatDAO implements GenericDAO {
             cs.setInt(1, id_annuncio);
             ResultSet rs = cs.executeQuery();
 
-            if(rs.next()) {
+            if (rs.next()) {
                 do {
-                    resultList.add(new Messaggio());
+                    resultList.add(new Messaggio(rs.getString("mittente"), rs.getString("destinatario"), rs.getString("contenuto"),
+                            TipoMessaggio.MESSAGGIO_PRIVATO, rs.getInt("annuncio"), rs.getInt("id_messaggio"), rs.getTimestamp("data_ora")));
 
 
                 } while (rs.next());
@@ -39,4 +41,6 @@ public class ChatDAO implements GenericDAO {
             throw new DAOException(e.getMessage());
         }
 
+        return resultList;
+    }
 }

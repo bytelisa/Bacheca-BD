@@ -3,14 +3,18 @@ package org.example.bacheca.controller;
 import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.dao.CercaAnnuncioDAO;
 import org.example.bacheca.model.dao.CreaAnnuncioDAO;
+import org.example.bacheca.model.dao.NotificheDAO;
 import org.example.bacheca.model.domain.Annuncio;
+import org.example.bacheca.model.domain.Notifica;
 import org.example.bacheca.other.CategorieController;
 import org.example.bacheca.other.Printer;
 import org.example.bacheca.view.AnnunciView;
+import org.example.bacheca.view.NotificaView;
 import org.example.bacheca.view.UtenteView;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 
@@ -36,7 +40,7 @@ public class UtenteController implements Controller {
                 case 2 -> cercaAnnuncio();
                 case 3 -> annunciUtente(0);
                 case 4 -> annunciSeguiti();
-                case 5 -> Printer.println("Nuove note - Non ancora implementato");
+                case 5 -> notificheAnnunci();
                 case 6 -> annunciUtente(1);
                 default -> throw new RuntimeException("Invalid choice");
             }
@@ -138,6 +142,21 @@ public class UtenteController implements Controller {
         } catch (DAOException e){
             e.printStackTrace();
             Printer.errorPrint("Errore nel caricamento degli annunci seguiti.");
+        }
+    }
+
+    /*------------------------------------------- NOTIFICHE  -------------------------------------------------*/
+
+    public void notificheAnnunci(){
+        List<Notifica> notifiche = new ArrayList<>();
+
+        NotificheDAO dao = new NotificheDAO();
+        try {
+            notifiche = dao.execute(user);
+            NotificaView.mostraNotifiche(notifiche);
+
+        } catch (DAOException e) {
+            Printer.errorPrintln("Errore nel caricamento delle notifiche.");
         }
     }
 

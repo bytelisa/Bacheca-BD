@@ -186,15 +186,13 @@ public class UtenteController implements Controller {
 
             switch (choice) {
                 case 1 -> {
-                    //opzione 1: tuoi annunci: prima prendiamo gli annunci che hanno ricevuto messaggi, poi l'utente sceglie l'annuncio e noi mostriamo la chat classica
-                    //opzione 2:  al venditore devono essere mostrate tutte le combinazioni (annuncio, mittente), che rappresentano le chat. Poi lui sceglie tra queste
+                    //tuoi annunci: prima prendiamo gli annunci che hanno ricevuto messaggi, poi l'utente sceglie l'annuncio e noi mostriamo la chat classica
 
                     try {
                         Connection conn = ConnectionFactory.getConnection();
                         CallableStatement cs = null;
                         List<List<String>> chatAnnunci = new ArrayList<>();
 
-                        //annunci = dao.execute(user, "6", 0);
                         cs = conn.prepareCall("call annunci_con_interazioni_venditore(?)");
                         cs.setString(1, user);
 
@@ -208,11 +206,6 @@ public class UtenteController implements Controller {
                                         rs.getString("descrizione"), rs.getString("venditore"),
                                         rs.getString("categoria"));
                                 annunci.add(annuncioCorrente);
-                                //List<String> utenti = new ArrayList<>();
-
-
-                                //utenti.add(rs.getString("mittente"));
-                                //chatAnnunci.add(utenti);    //tutti gli utenti con cui abbiamo chat.
 
                             }while (rs.next());
 

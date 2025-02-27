@@ -44,7 +44,8 @@ public class ChatController implements Controller {
 
             switch(tipoUtente) {
                 case 1 -> {
-                    //venditore
+                    //venditore: dobbiamo gestire più chat
+
                     AnnunciView.stampaMessaggio("Chat con gli utenti relative a questo annuncio: ");
 
                     try {
@@ -61,9 +62,9 @@ public class ChatController implements Controller {
 
                         //adesso stampo tutti li interessati così il venditore può scegliere una chat
                         Printer.printlnBlu("Chat relative a questo annuncio: ");
-                        int i = 0;
+                        int i = 1;
                         for (String interessato: interessati){
-                            Printer.println("   " +i + ") " + interessato);
+                            Printer.println("   " + i + ") " + interessato);
                             i+=1;
                         }
 
@@ -76,16 +77,19 @@ public class ChatController implements Controller {
                         cs1.setString(2, utenteInteressato);
                         ResultSet rs1 = cs1.executeQuery();
 
-                        if (rs.next()) {
+                        List<Messaggio> userChat = new ArrayList<>();
+
+                        if (rs1.next()) {
                             do {
-                                this.chat.add(new Messaggio(rs.getString("mittente"), rs.getString("destinatario"),
-                                        rs.getString("contenuto"), MESSAGGIO_PRIVATO, rs.getInt("id_annuncio")));
-                            } while (rs.next());
+                                userChat.add(new Messaggio(rs1.getString("mittente"), rs1.getString("destinatario"),
+                                        rs1.getString("contenuto"), MESSAGGIO_PRIVATO, rs1.getInt("id_annuncio"),
+                                        rs1.getInt("id_messaggio"), rs1.getTimestamp("ora")));
+                            } while (rs1.next());
                         }
 
                         //adesso stampo la chat con questo utente
                         Printer.printlnBlu("CHAT con " + utenteInteressato);
-                        MessaggioView.stampaMessaggi(chat);
+                        MessaggioView.stampaMessaggi(userChat);
 
                         /*while (true){
                         int choice = MessaggioView.showMenu();
@@ -110,6 +114,7 @@ public class ChatController implements Controller {
                             case 0 -> {return;}*/
 
                     } catch (SQLException e) {
+                        e.printStackTrace();
                         Printer.errorPrintln("Errore nel caricamento degli interessati.");
                     }
                 }

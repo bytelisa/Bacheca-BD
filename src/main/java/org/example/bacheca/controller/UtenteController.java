@@ -197,7 +197,7 @@ public class UtenteController implements Controller {
                         cs.setString(1, user);
 
                         ResultSet rs = cs.executeQuery();
-                        int i=0;
+
 
                         if(rs.next()) {
 
@@ -210,7 +210,7 @@ public class UtenteController implements Controller {
                             }while (rs.next());
 
                         }
-
+                        Printer.println("Seleziona un annuncio per vederne le chat relative.");
                         AnnunciView.mostraAnnunci(annunci);
                         int choice1 = AnnunciView.selezionaRisultato(100);
 

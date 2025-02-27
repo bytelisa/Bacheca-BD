@@ -27,7 +27,7 @@ public class MessaggioView {
             Printer.print("Opzione scelta (1-3): ");
             choice = input.nextInt();
 
-            if (choice >= 1 && choice <= 3) {
+            if (choice >= 0 && choice <= 3) {
                 break;
             }
             Printer.print("Input invalido, inserire un numero valido: ");

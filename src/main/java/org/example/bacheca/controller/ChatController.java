@@ -83,11 +83,13 @@ public class ChatController implements Controller {
                             } while (rs.next());
                         }
 
+                        //adesso stampo la chat con questo utente
+                        Printer.printlnBlu("CHAT con " + utenteInteressato);
+                        MessaggioView.stampaMessaggi(chat);
+
                     } catch (SQLException e) {
                         Printer.errorPrintln("Errore nel caricamento degli interessati.");
                     }
-
-
                 }
             }
 

@@ -16,23 +16,13 @@ public class ChatDAO implements GenericDAO {
     @Override
     public List<Messaggio> execute(Object... params) throws DAOException {
         int id_annuncio = (int) params[0];
-        String role = (String) params[1];
-        String venditore = (String) params[2];
+
 
         List<Messaggio> resultList = new ArrayList<>();
 
         try {
             Connection conn = ConnectionFactory.getConnection();
             CallableStatement cs = null;
-
-            switch (role)  {
-                case ("venditore") -> {
-
-                }
-                case ("utente") -> {
-
-                }
-            }
 
             cs = conn.prepareCall("call chat_annuncio(?)");
             cs.setInt(1, id_annuncio);

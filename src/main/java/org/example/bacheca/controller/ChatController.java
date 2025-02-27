@@ -87,40 +87,65 @@ public class ChatController implements Controller {
                         Printer.printlnBlu("CHAT con " + utenteInteressato);
                         MessaggioView.stampaMessaggi(chat);
 
+                        /*while (true){
+                        int choice = MessaggioView.showMenu();
+                        switch (choice) {
+                            case 1 ->
+                            {
+                                //risposta
+                                Messaggio attuale = chat.getLast();
+
+                                String risposta = MessaggioView.inserisciMessaggio("Nuovo messaggio: ");
+                                Messaggio nuovoMessaggio = new Messaggio(attuale.getDestinatario(), attuale.getMittente(),
+                                        risposta, attuale.getTipoMessaggio(), attuale.getIdAnnuncioRelativo());
+
+                                MessaggioDAO dao1 = new MessaggioDAO();
+                                dao1.execute(1, nuovoMessaggio);
+                            }
+                            case 2 -> {
+                                //mostro il profilo del'utente
+                                //devo chiamare infoutente da utenteDAO e quindi portarmi appresso l'username
+                                //todo questo!
+                            }
+                            case 0 -> {return;}*/
+
                     } catch (SQLException e) {
                         Printer.errorPrintln("Errore nel caricamento degli interessati.");
                     }
                 }
-            }
 
 
-            ChatDAO dao = new ChatDAO();
-            this.chat = dao.execute(annuncio.getId());
-            Printer.printlnBlu("------------------------------ CHAT ANNUNCIO -------------------------------");
-            MessaggioView.stampaMessaggi(chat);
+                case 2 -> {
+                    ChatDAO dao = new ChatDAO();
+                    this.chat = dao.execute(annuncio.getId());
+                    Printer.printlnBlu("------------------------------ CHAT ANNUNCIO -------------------------------");
+                    MessaggioView.stampaMessaggi(chat);
 
-            while (true){
-                int choice = MessaggioView.showMenu();
-                switch (choice) {
-                    case 1 ->
-                    {
-                        //risposta
-                        Messaggio attuale = chat.getLast();
+                    while (true){
+                        int choice = MessaggioView.showMenu();
+                        switch (choice) {
+                            case 1 ->
+                            {
+                                //risposta
+                                Messaggio attuale = chat.getLast();
 
-                        String risposta = MessaggioView.inserisciMessaggio("Nuovo messaggio: ");
-                        Messaggio nuovoMessaggio = new Messaggio(attuale.getDestinatario(), attuale.getMittente(),
-                                risposta, attuale.getTipoMessaggio(), attuale.getIdAnnuncioRelativo());
+                                String risposta = MessaggioView.inserisciMessaggio("Nuovo messaggio: ");
+                                Messaggio nuovoMessaggio = new Messaggio(attuale.getDestinatario(), attuale.getMittente(),
+                                        risposta, attuale.getTipoMessaggio(), attuale.getIdAnnuncioRelativo());
 
-                        MessaggioDAO dao1 = new MessaggioDAO();
-                        dao1.execute(1, nuovoMessaggio);
+                                MessaggioDAO dao1 = new MessaggioDAO();
+                                dao1.execute(1, nuovoMessaggio);
+                            }
+                            case 2 -> {
+                                //mostro il profilo del'utente
+                                //devo chiamare infoutente da utenteDAO e quindi portarmi appresso l'username
+                                //todo questo!
+                            }
+                            case 0 -> {return;}
+                        }
                     }
-                    case 2 -> {
-                        //mostro il profilo del'utente
-                        //devo chiamare infoutente da utenteDAO e quindi portarmi appresso l'username
-                        //todo questo!
-                    }
-                    case 0 -> {return;}
                 }
+
             }
 
 

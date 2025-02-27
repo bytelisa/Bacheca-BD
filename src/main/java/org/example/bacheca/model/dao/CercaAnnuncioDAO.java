@@ -44,6 +44,10 @@ public class CercaAnnuncioDAO implements GenericDAO {
                 case "5" -> {
                     //annunci con cui l'utente ha interagito
                     cs = conn.prepareCall("call annunci_con_interazioni(?)");
+                }
+                case "6" -> {
+                    //annunci dell'utente che hanno ricevuto messaggi
+                    cs = conn.prepareCall("call annunci_con_interazioni_venditore(?)");
                     cs.setString(1, filter);
                 }
                 default -> System.out.println("ERRORE FILTRO RICERCA DAO");

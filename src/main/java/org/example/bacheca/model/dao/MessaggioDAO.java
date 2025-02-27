@@ -30,12 +30,13 @@ public class MessaggioDAO implements GenericDAO {
                     cs.setInt(3, messaggio.getIdAnnuncioRelativo());
                     cs.setString(4, messaggio.getMittente()); //mittente
                     cs.setString(5, messaggio.getDestinatario()); //destinatario
+                    cs.executeQuery();
                 }
                 //case 2 -> gestito con utenteDAO
                 case 3 -> elimina();
             }
         } catch (SQLException e) {
-
+            throw new DAOException(e.getMessage());
         }
 
         return null;

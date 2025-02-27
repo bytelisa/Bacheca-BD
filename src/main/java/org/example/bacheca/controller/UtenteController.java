@@ -2,11 +2,13 @@ package org.example.bacheca.controller;
 
 import org.example.bacheca.exception.DAOException;
 import org.example.bacheca.model.dao.CercaAnnuncioDAO;
+import org.example.bacheca.model.dao.ConnectionFactory;
 import org.example.bacheca.model.dao.CreaAnnuncioDAO;
 import org.example.bacheca.model.dao.NotificheDAO;
 import org.example.bacheca.model.domain.Annuncio;
 import org.example.bacheca.model.domain.Messaggio;
 import org.example.bacheca.model.domain.Notifica;
+import org.example.bacheca.model.domain.Utente;
 import org.example.bacheca.other.CategorieController;
 import org.example.bacheca.other.Printer;
 import org.example.bacheca.view.AnnunciView;
@@ -16,6 +18,10 @@ import org.example.bacheca.view.UtenteView;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -166,19 +172,77 @@ public class UtenteController implements Controller {
 
     public void messaggiPrivati() {
         // in pratica mostro tutte le chat private, una per ogni annuncio che ha al momento messaggi privati
+
+
         CercaAnnuncioDAO dao = new CercaAnnuncioDAO();
         List<Annuncio> annunci = new ArrayList<>();
         List<Messaggio> messaggi = new ArrayList<>();
 
         try {
-            annunci = dao.execute(user, "5", 0);
-            Printer.printlnBlu("Ecco gli annunci con cui hai interagito: ");
-            AnnunciView.mostraAnnunci(annunci);
 
-            int choice = AnnunciView.selezionaRisultato(100);
+            UtenteView.stampaMessaggio("    1. Chat relative ai tuoi annunci.\n    2. Chat relative ad altri annunci. ");
 
-            ChatController next = new ChatController(annunci.get(choice-1));
-            next.start();
+            int choice = UtenteView.selezionaRisultato(2);
+
+            switch (choice) {
+                case 1 -> {
+                    //opzione 1: tuoi annunci: prima prendiamo gli annunci che hanno ricevuto messaggi, poi l'utente sceglie l'annuncio e noi mostriamo la chat classica
+                    //opzione 2:  al venditore devono essere mostrate tutte le combinazioni (annuncio, mittente), che rappresentano le chat. Poi lui sceglie tra queste
+
+                    try {
+                        Connection conn = ConnectionFactory.getConnection();
+                        CallableStatement cs = null;
+                        List<List<String>> chatAnnunci = new ArrayList<>();
+
+                        //annunci = dao.execute(user, "6", 0);
+                        cs = conn.prepareCall("call annunci_con_interazioni_venditore(?)");
+                        cs.setString(1, user);
+
+                        ResultSet rs = cs.executeQuery();
+                        int i=0;
+
+                        if(rs.next()) {
+
+                            do {
+                                Annuncio annuncioCorrente = new Annuncio(rs.getInt("id_annuncio"), rs.getFloat("prezzo"),
+                                        rs.getString("descrizione"), rs.getString("venditore"),
+                                        rs.getString("categoria"));
+                                annunci.add(annuncioCorrente);
+                                //List<String> utenti = new ArrayList<>();
+
+
+                                //utenti.add(rs.getString("mittente"));
+                                //chatAnnunci.add(utenti);    //tutti gli utenti con cui abbiamo chat.
+
+                            }while (rs.next());
+
+                        }
+
+                        AnnunciView.mostraAnnunci(annunci);
+                        int choice1 = AnnunciView.selezionaRisultato(100);
+
+                        ChatController next = new ChatController(1, Annuncio.findAnnuncioById(annunci, choice1));
+                        next.start();
+                    } catch (SQLException e) {
+
+                    }
+
+                }
+                case 2 -> {
+                    //annunci altrui
+                    annunci = dao.execute(user, "5", 0);
+                    Printer.printlnBlu("Ecco gli annunci con cui hai interagito: ");
+                    AnnunciView.mostraAnnunci(annunci);
+
+                    int choice1 = AnnunciView.selezionaRisultato(100);
+
+                    ChatController next = new ChatController(2, Annuncio.findAnnuncioById(annunci, choice1));
+                    next.start();
+                }
+                default -> Printer.errorPrintln("errore");
+            }
+
+
 
         } catch (DAOException|IOException e) {
             e.printStackTrace();

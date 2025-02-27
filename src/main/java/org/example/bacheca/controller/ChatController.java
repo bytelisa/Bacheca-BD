@@ -68,12 +68,20 @@ public class ChatController implements Controller {
                         }
 
                         int choice = UtenteView.selezionaRisultato(i+1);
+                        String utenteInteressato = interessati.get(choice - 1);
 
                         //adesso prendo la chat con l'utente selezionato, relativa all'annuncio precedentemente scelto
                         CallableStatement cs1 = conn.prepareCall( "{call chat_annuncio_venditore(?,?)}");
                         cs1.setInt(1, this.annuncio.getId());
                         cs1.setString(2, utenteInteressato);
+                        ResultSet rs1 = cs1.executeQuery();
 
+                        if (rs.next()) {
+                            do {
+                                this.chat.add(new Messaggio(rs.getString("mittente"), rs.getString("destinatario"),
+                                        rs.getString("contenuto"), MESSAGGIO_PRIVATO, rs.getInt("id_annuncio")));
+                            } while (rs.next());
+                        }
 
                     } catch (SQLException e) {
                         Printer.errorPrintln("Errore nel caricamento degli interessati.");

@@ -14,7 +14,7 @@ public class UtenteDAO implements GenericDAO {
     public Utente execute(Object...params) throws DAOException {
 
         String username = (String) params[0];
-        int action = (int) params[1];
+
         Utente utente = null;
         try{
             Connection conn = ConnectionFactory.getConnection();

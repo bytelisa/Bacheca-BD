@@ -214,7 +214,7 @@ public class UtenteController implements Controller {
                         AnnunciView.mostraAnnunci(annunci);
                         int choice1 = AnnunciView.selezionaRisultato(100);
 
-                        ChatController next = new ChatController(1, Annuncio.findAnnuncioById(annunci, choice1));
+                        ChatController next = new ChatController(1, Annuncio.findAnnuncioById(annunci, choice1), user, null);
                         next.start();
                     } catch (SQLException e) {
 
@@ -229,7 +229,7 @@ public class UtenteController implements Controller {
 
                     int choice1 = AnnunciView.selezionaRisultato(100);
 
-                    ChatController next = new ChatController(2, Annuncio.findAnnuncioById(annunci, choice1));
+                    ChatController next = new ChatController(2, Annuncio.findAnnuncioById(annunci, choice1), null, user);
                     next.start();
                 }
                 default -> Printer.errorPrintln("errore");

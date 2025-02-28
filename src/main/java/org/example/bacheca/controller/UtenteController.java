@@ -198,7 +198,9 @@ public class UtenteController implements Controller {
 
                         ResultSet rs = cs.executeQuery();
 
-
+                        if (!rs.next()) {
+                            Printer.printlnGiallo("Al momento nessuno ti ha contattato riguardo i tuoi annunci. ");
+                        }
                         if(rs.next()) {
 
                             do {
@@ -209,28 +211,34 @@ public class UtenteController implements Controller {
 
                             }while (rs.next());
 
+                            Printer.println("Seleziona un annuncio per vederne le chat relative.");
+                            AnnunciView.mostraAnnunci(annunci);
+                            int choice1 = AnnunciView.selezionaRisultato(100);
+
+                            ChatController next = new ChatController(1, Annuncio.findAnnuncioById(annunci, choice1), user, null);
+                            next.start();
                         }
-                        Printer.println("Seleziona un annuncio per vederne le chat relative.");
-                        AnnunciView.mostraAnnunci(annunci);
-                        int choice1 = AnnunciView.selezionaRisultato(100);
 
-                        ChatController next = new ChatController(1, Annuncio.findAnnuncioById(annunci, choice1), user, null);
-                        next.start();
                     } catch (SQLException e) {
-
+                        Printer.errorPrintln("Errore nel caricamento delle chat.");
                     }
 
                 }
                 case 2 -> {
                     //annunci altrui
                     annunci = dao.execute(user, "5", 0);
-                    Printer.printlnBlu("Ecco gli annunci con cui hai interagito: ");
-                    AnnunciView.mostraAnnunci(annunci);
+                    if (annunci == null) {
+                        Printer.printlnGiallo("Al momento non hai interagito con nessun annuncio.");
+                    } else {
+                        Printer.printlnBlu("Ecco gli annunci con cui hai interagito: ");
+                        AnnunciView.mostraAnnunci(annunci);
 
-                    int choice1 = AnnunciView.selezionaRisultato(100);
+                        int choice1 = AnnunciView.selezionaRisultato(100);
 
-                    ChatController next = new ChatController(2, Annuncio.findAnnuncioById(annunci, choice1), null, user);
-                    next.start();
+                        ChatController next = new ChatController(2, Annuncio.findAnnuncioById(annunci, choice1), null, user);
+                        next.start();
+                    }
+
                 }
                 default -> Printer.errorPrintln("errore");
             }
